@@ -17,3 +17,41 @@ class PoolClient(BaseClient):
         request = traderrpc.TokensRequest()
         response = self._trader_stub.GetLsatTokens(request)
         return response
+
+    @handle_rpc_errors
+    def init_account(self, **kwargs):
+        """Unlock encrypted wallet at lnd startup"""
+        request = traderrpc.InitAccountRequest(**kwargs)
+        response = self._trader_stub.InitAccount(request)
+        return response
+
+    @handle_rpc_errors
+    def auction_fee(self):
+        """Unlock encrypted wallet at lnd startup"""
+        request = traderrpc.AuctionFeeRequest()
+        response = self._trader_stub.AuctionFee(request)
+        return response
+    
+    @handle_rpc_errors
+    def next_batch_info(self):
+        """Unlock encrypted wallet at lnd startup"""
+        request = traderrpc.NextBatchInfoRequest()
+        response = self._trader_stub.NextBatchInfo(request)
+        return response
+
+    @handle_rpc_errors
+    def node_ratings(self, node_pubkeys=[]):
+        """Unlock encrypted wallet at lnd startup"""
+        request = traderrpc.NodeRatingRequest(node_pubkeys=node_pubkeys)
+        response = self._trader_stub.NodeRatings(request)
+        return response
+
+    @handle_rpc_errors
+    def batch_snapshots(self, start_batch_id, num_batches_back):
+        """Unlock encrypted wallet at lnd startup"""
+        request = traderrpc.BatchSnapshotsRequest(
+            start_batch_id=start_batch_id,
+            num_batches_back=num_batches_back
+        )
+        response = self._trader_stub.BatchSnapshots(request)
+        return response
