@@ -3,33 +3,62 @@ import platform
 import os
 import grpc
 from poolgrpc.compiled import (
-    trader_pb2 as traderrpc, trader_pb2_grpc as traderstub,
-    auctioneer_pb2 as auctioneerrpc, auctioneer_pb2_grpc as auctioneerstub,
-    hashmail_pb2 as hashmailrpc, hashmail_pb2_grpc as hashmailstub
+    trader_pb2 as traderrpc,
+    trader_pb2_grpc as traderstub,
+    auctioneer_pb2 as auctioneerrpc,
+    auctioneer_pb2_grpc as auctioneerstub,
+    hashmail_pb2 as hashmailrpc,
+    hashmail_pb2_grpc as hashmailstub,
 )
 
 system = platform.system().lower()
 
-if system == 'linux':
-    TLS_FILEPATH = os.path.expanduser('~/.lnd/tls.cert')
-    ADMIN_MACAROON_BASE_FILEPATH = '~/.lnd/data/chain/bitcoin/{}/admin.macaroon'
-    READ_ONLY_MACAROON_BASE_FILEPATH = '~/.lnd/data/chain/bitcoin/{}/readonly.macaroon'
-elif system == 'darwin':
-    TLS_FILEPATH = os.path.expanduser('~/Library/Application Support/Lnd/tls.cert')
-    ADMIN_MACAROON_BASE_FILEPATH = '~/Library/Application Support/Lnd/data/chain/bitcoin/{}/admin.macaroon'
-    READ_ONLY_MACAROON_BASE_FILEPATH = '~/Library/Application Support/Lnd/data/chain/bitcoin/{}/readonly.macaroon'
-elif system == 'windows':
-    TLS_FILEPATH = os.path.join(os.path.expanduser("~"), 'AppData', 'Local', 'Lnd', 'tls.cert')
-    ADMIN_MACAROON_BASE_FILEPATH = os.path.join(os.path.expanduser("~"), 'AppData', 'Local', 'Lnd', 'data', 'chain', 'bitcoin', 'mainnet', 'admin.macaroon')
-    READ_ONLY_MACAROON_BASE_FILEPATH = os.path.join(os.path.expanduser("~"), 'AppData', 'Local', 'Lnd', 'data', 'chain', 'bitcoin', 'mainnet', 'readonly.macaroon')
+if system == "linux":
+    TLS_FILEPATH = os.path.expanduser("~/.lnd/tls.cert")
+    ADMIN_MACAROON_BASE_FILEPATH = "~/.lnd/data/chain/bitcoin/{}/admin.macaroon"
+    READ_ONLY_MACAROON_BASE_FILEPATH = "~/.lnd/data/chain/bitcoin/{}/readonly.macaroon"
+elif system == "darwin":
+    TLS_FILEPATH = os.path.expanduser("~/Library/Application Support/Lnd/tls.cert")
+    ADMIN_MACAROON_BASE_FILEPATH = (
+        "~/Library/Application Support/Lnd/data/chain/bitcoin/{}/admin.macaroon"
+    )
+    READ_ONLY_MACAROON_BASE_FILEPATH = (
+        "~/Library/Application Support/Lnd/data/chain/bitcoin/{}/readonly.macaroon"
+    )
+elif system == "windows":
+    TLS_FILEPATH = os.path.join(
+        os.path.expanduser("~"), "AppData", "Local", "Lnd", "tls.cert"
+    )
+    ADMIN_MACAROON_BASE_FILEPATH = os.path.join(
+        os.path.expanduser("~"),
+        "AppData",
+        "Local",
+        "Lnd",
+        "data",
+        "chain",
+        "bitcoin",
+        "mainnet",
+        "admin.macaroon",
+    )
+    READ_ONLY_MACAROON_BASE_FILEPATH = os.path.join(
+        os.path.expanduser("~"),
+        "AppData",
+        "Local",
+        "Lnd",
+        "data",
+        "chain",
+        "bitcoin",
+        "mainnet",
+        "readonly.macaroon",
+    )
 else:
-    raise SystemError('Unrecognized system')
+    raise SystemError("Unrecognized system")
 
 
 # Due to updated ECDSA generated tls.cert we need to let gprc know that
 # we need to use that cipher suite otherwise there will be a handhsake
 # error when we communicate with the lnd rpc server.
-os.environ["GRPC_SSL_CIPHER_SUITES"] = 'HIGH+ECDSA'
+os.environ["GRPC_SSL_CIPHER_SUITES"] = "HIGH+ECDSA"
 
 
 def get_cert(filepath=None):
@@ -39,12 +68,12 @@ def get_cert(filepath=None):
           https://github.com/grpc/grpc/issues/13866
     """
     filepath = filepath or TLS_FILEPATH
-    with open(filepath, 'rb') as f:
+    with open(filepath, "rb") as f:
         cert = f.read()
     return cert
 
 
-def get_macaroon(admin=False, network='mainnet', filepath=None):
+def get_macaroon(admin=False, network="mainnet", filepath=None):
     """Read and decode macaroon from file
 
     The macaroon is decoded into a hex string and returned.
@@ -53,9 +82,11 @@ def get_macaroon(admin=False, network='mainnet', filepath=None):
         if admin:
             filepath = os.path.expanduser(ADMIN_MACAROON_BASE_FILEPATH.format(network))
         else:
-            filepath = os.path.expanduser(READ_ONLY_MACAROON_BASE_FILEPATH.format(network))
+            filepath = os.path.expanduser(
+                READ_ONLY_MACAROON_BASE_FILEPATH.format(network)
+            )
 
-    with open(filepath, 'rb') as f:
+    with open(filepath, "rb") as f:
         macaroon_bytes = f.read()
     return binascii.hexlify(macaroon_bytes).decode()
 
@@ -81,19 +112,29 @@ class MacaroonMetadataPlugin(grpc.AuthMetadataPlugin):
         self.macaroon = macaroon
 
     def __call__(self, context, callback):
-        callback([('macaroon', self.macaroon)], None)
+        callback([("macaroon", self.macaroon)], None)
 
 
 class BaseClient(object):
     grpc_module = grpc
 
-    def __init__(self, ip_address='127.0.0.1:12010', network='mainnet', admin=False, cert=None,
-                 cert_filepath=None, macaroon=None, macaroon_filepath=None):
+    def __init__(
+        self,
+        ip_address="127.0.0.1:12010",
+        network="mainnet",
+        admin=False,
+        cert=None,
+        cert_filepath=None,
+        macaroon=None,
+        macaroon_filepath=None,
+    ):
         if cert is None:
             cert = get_cert(cert_filepath)
 
         if macaroon is None:
-            macaroon = get_macaroon(admin=admin, network=network, filepath=macaroon_filepath)
+            macaroon = get_macaroon(
+                admin=admin, network=network, filepath=macaroon_filepath
+            )
 
         if cert is None:
             cert = get_cert(cert_filepath)
@@ -113,9 +154,12 @@ class BaseClient(object):
         To ensure the channel is usable we create a new one for each request.
         """
         channel = self.grpc_module.secure_channel(
-            self.ip_address, self._credentials, options=[('grpc.max_receive_message_length', 1024*1024*50)]
+            self.ip_address,
+            self._credentials,
+            options=[("grpc.max_receive_message_length", 1024 * 1024 * 50)],
         )
         return traderstub.TraderStub(channel)
+
 
 # traderrpc
 # traderstub

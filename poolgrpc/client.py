@@ -3,7 +3,6 @@ from .errors import handle_rpc_errors
 
 
 class PoolClient(BaseClient):
-
     @handle_rpc_errors
     def get_info(self):
         """Unlock encrypted wallet at lnd startup"""
@@ -31,7 +30,36 @@ class PoolClient(BaseClient):
         request = traderrpc.AuctionFeeRequest()
         response = self._trader_stub.AuctionFee(request)
         return response
-    
+
+    @handle_rpc_errors
+    def quote_account(self, account_value, conf_target):
+        """Unlock encrypted wallet at lnd startup"""
+        request = traderrpc.QuoteAccountRequest(
+            account_value=account_value, conf_target=conf_target
+        )
+        response = self._trader_stub.QuoteAccount(request)
+        return response
+
+    @handle_rpc_errors
+    def quote_order(
+        self,
+        amt,
+        rate_fixed,
+        lease_duration_blocks,
+        max_batch_fee_rate_sat_per_kw,
+        min_units_match,
+    ):
+        """Unlock encrypted wallet at lnd startup"""
+        request = traderrpc.QuoteOrderRequest(
+            amt=amt,
+            rate_fixed=rate_fixed,
+            lease_duration_blocks=lease_duration_blocks,
+            max_batch_fee_rate_sat_per_kw=max_batch_fee_rate_sat_per_kw,
+            min_units_match=min_units_match,
+        )
+        response = self._trader_stub.QuoteOrder(request)
+        return response
+
     @handle_rpc_errors
     def next_batch_info(self):
         """Unlock encrypted wallet at lnd startup"""
@@ -50,8 +78,7 @@ class PoolClient(BaseClient):
     def batch_snapshots(self, start_batch_id, num_batches_back):
         """Unlock encrypted wallet at lnd startup"""
         request = traderrpc.BatchSnapshotsRequest(
-            start_batch_id=start_batch_id,
-            num_batches_back=num_batches_back
+            start_batch_id=start_batch_id, num_batches_back=num_batches_back
         )
         response = self._trader_stub.BatchSnapshots(request)
         return response
