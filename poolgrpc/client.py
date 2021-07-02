@@ -4,6 +4,33 @@ from .errors import handle_rpc_errors
 
 class PoolClient(BaseClient):
     @handle_rpc_errors
+    def auction_fee(self):
+        """Unlock encrypted wallet at lnd startup"""
+        request = traderrpc.AuctionFeeRequest()
+        response = self._trader_stub.AuctionFee(request)
+        return response
+
+    @handle_rpc_errors
+    def batch_snapshots(self, start_batch_id, num_batches_back):
+        """Unlock encrypted wallet at lnd startup"""
+        request = traderrpc.BatchSnapshotsRequest(
+            start_batch_id=start_batch_id, num_batches_back=num_batches_back
+        )
+        response = self._trader_stub.BatchSnapshots(request)
+        return response
+
+    @handle_rpc_errors
+    def deposit_account(self, trader_key, amount_sat, fee_rate_sat_per_kw):
+        """Unlock encrypted wallet at lnd startup"""
+        request = traderrpc.DepositAccountRequest(
+            trader_key=trader_key,
+            amount_sat=amount_sat,
+            fee_rate_sat_per_kw=fee_rate_sat_per_kw
+        )
+        response = self._trader_stub.DepositAccount(request)
+        return response
+
+    @handle_rpc_errors
     def get_info(self):
         """Unlock encrypted wallet at lnd startup"""
         request = traderrpc.GetInfoRequest()
@@ -25,10 +52,20 @@ class PoolClient(BaseClient):
         return response
 
     @handle_rpc_errors
-    def auction_fee(self):
+    def lease_durations(self):
         """Unlock encrypted wallet at lnd startup"""
-        request = traderrpc.AuctionFeeRequest()
-        response = self._trader_stub.AuctionFee(request)
+        request = traderrpc.LeaseDurationRequest()
+        response = self._trader_stub.LeaseDurations(request)
+        return response
+
+    @handle_rpc_errors
+    def leases(self, batch_ids, accounts):
+        """Unlock encrypted wallet at lnd startup"""
+        request = traderrpc.LeasesRequest(
+            batch_ids=batch_ids,
+            accounts=accounts
+        )
+        response = self._trader_stub.Leases(request)
         return response
 
     @handle_rpc_errors
@@ -75,10 +112,63 @@ class PoolClient(BaseClient):
         return response
 
     @handle_rpc_errors
-    def batch_snapshots(self, start_batch_id, num_batches_back):
+    def submit_order(self, ask, bid, initiator):
         """Unlock encrypted wallet at lnd startup"""
-        request = traderrpc.BatchSnapshotsRequest(
-            start_batch_id=start_batch_id, num_batches_back=num_batches_back
+        request = traderrpc.SubmitOrderRequest(
+            ask=ask,
+            bid=bid,
+            initiator=initiator
         )
-        response = self._trader_stub.BatchSnapshots(request)
+        response = self._trader_stub.SubmitOrder(request)
+        return response
+
+    @handle_rpc_errors
+    def stop_daemon(self):
+        """Unlock encrypted wallet at lnd startup"""
+        request = traderrpc.StopDaemonRequest()
+        response = self._trader_stub.StopDaemon(request)
+        return response
+
+    @handle_rpc_errors
+    def withdraw_account(self, trader_key, outputs, fee_rate_sat_per_kw):
+        """Unlock encrypted wallet at lnd startup"""
+        request = traderrpc.WithdrawAccountRequest(
+            trader_key=trader_key,
+            outputs=outputs,
+            fee_rate_sat_per_kw=fee_rate_sat_per_kw
+        )
+        response = self._trader_stub.WithdrawAccount(request)
+        return response
+
+    # sidecar
+    # step 1/4
+    @handle_rpc_errors
+    def offer_sidecar(self, ticket, auto_negotiate):
+        """Unlock encrypted wallet at lnd startup"""
+        request = traderrpc.OfferSidecarRequest(
+            auto_negotiate=auto_negotiate,
+            bid=bid,
+        )
+        response = self._trader_stub.OfferSidecar(request)
+        return response
+
+    # step 2/4
+    @handle_rpc_errors
+    def register_sidecar(self, ticket, auto_negotiate):
+        """Unlock encrypted wallet at lnd startup"""
+        request = traderrpc.RegisterSidecarRequest(
+            ticket=ticket,
+            auto_negotiate=auto_negotiate,
+        )
+        response = self._trader_stub.RegisterSidecar(request)
+        return response
+
+    # step 4/4
+    @handle_rpc_errors
+    def expect_sidecar_channel(self, ticket):
+        """Unlock encrypted wallet at lnd startup"""
+        request = traderrpc.ExpectSidecarChannelRequest(
+            ticket=ticket
+        )
+        response = self._trader_stub.ExpectSidecarChannel(request)
         return response
