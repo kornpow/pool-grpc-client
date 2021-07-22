@@ -69,6 +69,40 @@ class PoolClient(BaseClient):
         return response
 
     @handle_rpc_errors
+    def list_accounts(self, active_only):
+        """Unlock encrypted wallet at lnd startup"""
+        request = traderrpc.ListAccountsRequest(
+            active_only=active_only
+        )
+        response = self._trader_stub.ListAccounts(request)
+        return response
+
+
+    @handle_rpc_errors
+    def list_orders(self, verbose=False, active_only=True):
+        """Unlock encrypted wallet at lnd startup"""
+        request = traderrpc.ListOrdersRequest(
+            verbose=verbose,
+            active_only=active_only
+        )
+        response = self._trader_stub.ListOrders(request)
+        return response
+
+    @handle_rpc_errors
+    def next_batch_info(self):
+        """Unlock encrypted wallet at lnd startup"""
+        request = traderrpc.NextBatchInfoRequest()
+        response = self._trader_stub.NextBatchInfo(request)
+        return response
+
+    @handle_rpc_errors
+    def node_ratings(self, node_pubkeys=[]):
+        """Unlock encrypted wallet at lnd startup"""
+        request = traderrpc.NodeRatingRequest(node_pubkeys=node_pubkeys)
+        response = self._trader_stub.NodeRatings(request)
+        return response
+
+    @handle_rpc_errors
     def quote_account(self, account_value, conf_target):
         """Unlock encrypted wallet at lnd startup"""
         request = traderrpc.QuoteAccountRequest(
@@ -98,20 +132,6 @@ class PoolClient(BaseClient):
         return response
 
     @handle_rpc_errors
-    def next_batch_info(self):
-        """Unlock encrypted wallet at lnd startup"""
-        request = traderrpc.NextBatchInfoRequest()
-        response = self._trader_stub.NextBatchInfo(request)
-        return response
-
-    @handle_rpc_errors
-    def node_ratings(self, node_pubkeys=[]):
-        """Unlock encrypted wallet at lnd startup"""
-        request = traderrpc.NodeRatingRequest(node_pubkeys=node_pubkeys)
-        response = self._trader_stub.NodeRatings(request)
-        return response
-
-    @handle_rpc_errors
     def submit_order(self, ask, bid, initiator):
         """Unlock encrypted wallet at lnd startup"""
         request = traderrpc.SubmitOrderRequest(
@@ -124,7 +144,7 @@ class PoolClient(BaseClient):
 
     @handle_rpc_errors
     def stop_daemon(self):
-        """Unlock encrypted wallet at lnd startup"""
+        """Gracefully stop the pool daemon"""
         request = traderrpc.StopDaemonRequest()
         response = self._trader_stub.StopDaemon(request)
         return response
@@ -139,6 +159,19 @@ class PoolClient(BaseClient):
         )
         response = self._trader_stub.WithdrawAccount(request)
         return response
+
+    @handle_rpc_errors
+    def renew_account(self, account_key, absolute_expiry, relative_expiry, fee_rate_sat_per_kw):
+        """Unlock encrypted wallet at lnd startup"""
+        request = traderrpc.RenewAccountRequest(
+            account_key=account_key,
+            absolute_expiry=absolute_expiry,
+            relative_expiry=relative_expiry
+            fee_rate_sat_per_kw=fee_rate_sat_per_kw
+        )
+        response = self._trader_stub.RenewAccount(request)
+        return response
+
 
     # sidecar
     # step 1/4

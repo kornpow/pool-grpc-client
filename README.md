@@ -11,7 +11,6 @@ This is a wrapper around the default grpc interface that handles setting up cred
 
 ## Installation
 ```bash
-# NOT ON PYPI YET
 pip install pool-grpc-client
 ```
 
