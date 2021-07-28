@@ -70,7 +70,7 @@ class PoolClient(BaseClient):
 
     @handle_rpc_errors
     def list_accounts(self, active_only):
-        """Unlock encrypted wallet at lnd startup"""
+        """List trader accounts"""
         request = traderrpc.ListAccountsRequest(
             active_only=active_only
         )
@@ -80,7 +80,10 @@ class PoolClient(BaseClient):
 
     @handle_rpc_errors
     def list_orders(self, verbose=False, active_only=True):
-        """Unlock encrypted wallet at lnd startup"""
+        """
+        List info about orders
+        cli: pool orders list
+        """
         request = traderrpc.ListOrdersRequest(
             verbose=verbose,
             active_only=active_only
@@ -132,13 +135,10 @@ class PoolClient(BaseClient):
         return response
 
     @handle_rpc_errors
-    def submit_order(self, ask, bid, initiator):
+    def submit_order(self, **kwargs):
         """Unlock encrypted wallet at lnd startup"""
-        request = traderrpc.SubmitOrderRequest(
-            ask=ask,
-            bid=bid,
-            initiator=initiator
-        )
+        # TODO: either bid or ask must be filled but not both
+        request = traderrpc.SubmitOrderRequest(**kwargs)
         response = self._trader_stub.SubmitOrder(request)
         return response
 
@@ -166,7 +166,7 @@ class PoolClient(BaseClient):
         request = traderrpc.RenewAccountRequest(
             account_key=account_key,
             absolute_expiry=absolute_expiry,
-            relative_expiry=relative_expiry
+            relative_expiry=relative_expiry,
             fee_rate_sat_per_kw=fee_rate_sat_per_kw
         )
         response = self._trader_stub.RenewAccount(request)
@@ -176,7 +176,7 @@ class PoolClient(BaseClient):
     # sidecar
     # step 1/4
     @handle_rpc_errors
-    def offer_sidecar(self, ticket, auto_negotiate):
+    def offer_sidecar(self, bid, auto_negotiate):
         """Unlock encrypted wallet at lnd startup"""
         request = traderrpc.OfferSidecarRequest(
             auto_negotiate=auto_negotiate,
