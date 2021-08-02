@@ -205,3 +205,12 @@ class PoolClient(BaseClient):
         )
         response = self._trader_stub.ExpectSidecarChannel(request)
         return response
+
+    @handle_rpc_errors
+    def cancel_order(self, order_nonce):
+        """Unlock encrypted wallet at lnd startup"""
+        request = traderrpc.CancelOrderRequest(
+            order_nonce=order_nonce
+        )
+        response = self._trader_stub.CancelOrder(request)
+        return response
