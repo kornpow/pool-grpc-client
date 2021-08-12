@@ -8,6 +8,7 @@ from datetime import datetime, timedelta
 
 # Pip installed Modules
 from poolgrpc import PoolClient
+from poolgrpc.client import traderrpc
 from protobuf_to_dict import protobuf_to_dict
 
 credential_path = os.getenv("POOL_CRED_PATH", None)
@@ -17,6 +18,7 @@ else:
 	credential_path = Path(credential_path)
 
 pool_ip = "192.168.1.58"
+# pool_ip = "73.203.90.31"
 
 mac = str(credential_path.joinpath("pool.macaroon").absolute())
 tls = str(credential_path.joinpath("tls.cert").absolute())
@@ -28,3 +30,21 @@ pool = PoolClient(
 )
 
 pool.get_info()
+
+
+order = traderrpc.Order(
+    trader_key=bytes.fromhex("032d7f1b7f225dc6f6a6541112fa2f387bd6af5f5ae4cc02051c39df626a5510a6"),
+    rate_fixed=200,
+    amt=500000,
+    min_units_match=5,
+    max_batch_fee_rate_sat_per_kw=300
+)
+
+sidecar_bid = traderrpc.Bid(
+    details=order,
+    lease_duration_blocks=2016,
+    version=4,
+    min_node_tier=1,
+)
+
+pool.submit_order(bid=sidecar_bid)

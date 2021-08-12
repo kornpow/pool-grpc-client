@@ -11,10 +11,20 @@ class PoolClient(BaseClient):
         return response
 
     @handle_rpc_errors
+    def batch_snapshot(self, batch_id, num_batches_back):
+        """Unlock encrypted wallet at lnd startup"""
+        request = traderrpc.BatchSnapshotsRequest(
+            batch_id=batch_id,
+        )
+        response = self._trader_stub.BatchSnapshots(request)
+        return response
+
+    @handle_rpc_errors
     def batch_snapshots(self, start_batch_id, num_batches_back):
         """Unlock encrypted wallet at lnd startup"""
         request = traderrpc.BatchSnapshotsRequest(
-            start_batch_id=start_batch_id, num_batches_back=num_batches_back
+            start_batch_id=start_batch_id,
+            num_batches_back=num_batches_back
         )
         response = self._trader_stub.BatchSnapshots(request)
         return response
