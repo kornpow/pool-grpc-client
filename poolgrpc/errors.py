@@ -24,6 +24,10 @@ def handle_rpc_errors(fnc):
             # running, but the RPC server is not active yet (only
             # WalletUnlocker server active) and most likely this
             # is because of an encrypted wallet.
+            print(*args)
+            print(**kwargs)
+            print(exc)
+            print(exc.code())
             if exc.code() == grpc.StatusCode.UNIMPLEMENTED:
                 raise WalletEncryptedError from None
             else:

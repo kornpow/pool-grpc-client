@@ -68,17 +68,26 @@ from pathlib import Path
 import shutil
 import sh
 
-for proto in list(Path("../lnd/lnrpc").rglob("*.proto")):
-    shutil.copy(proto, Path.cwd())
+for proto in list(Path("../pool/").rglob("**/*.proto")):
+    shutil.copy(proto, Path.cwd().joinpath("poolgrpc/compiled/"))
 
-protos = list(Path(".").glob("*.proto"))
+# Modify auctioneer.proto from auctioneerrpc/auctioneer.proto --> poolgrpc/compiled/auctioneer.proto
+
+protos = list(Path(".").joinpath("poolgrpc/compiled/").glob("**/*.proto"))
+
+args = [
+    "-m",
+    "grpc_tools.protoc",
+    "--proto_path=poolgrpc/googleapis:.",
+    "--python_out=.",
+    "--grpc_python_out=.",
+]
 
 for protofile in protos:
-    try:
-        sh.python("-m", "grpc_tools.protoc", "--proto_path=.", "--python_out=.", "--grpc_python_out=.", str(protofile))
-        protos.remove(protofile)
-    except Exception as e:
-        print(f"Error in proto: {protofile}")
+        args.append(str(protofile) )
+
+# Generate the compiled protofiles
+sh.python(args)
 ```
 
 Last Step:

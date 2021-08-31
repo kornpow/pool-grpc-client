@@ -1,4 +1,4 @@
-from .common import BaseClient, traderrpc
+from .common import BaseClient, traderrpc, auctioneerrpc
 from .errors import handle_rpc_errors
 
 
@@ -11,18 +11,9 @@ class PoolClient(BaseClient):
         return response
 
     @handle_rpc_errors
-    def batch_snapshot(self, batch_id, num_batches_back):
-        """Unlock encrypted wallet at lnd startup"""
-        request = traderrpc.BatchSnapshotsRequest(
-            batch_id=batch_id,
-        )
-        response = self._trader_stub.BatchSnapshots(request)
-        return response
-
-    @handle_rpc_errors
     def batch_snapshots(self, start_batch_id, num_batches_back):
-        """Unlock encrypted wallet at lnd startup"""
-        request = traderrpc.BatchSnapshotsRequest(
+        """Get list of previously filled batches"""
+        request = auctioneerrpc.BatchSnapshotsRequest(
             start_batch_id=start_batch_id,
             num_batches_back=num_batches_back
         )
@@ -31,7 +22,7 @@ class PoolClient(BaseClient):
 
     @handle_rpc_errors
     def deposit_account(self, trader_key, amount_sat, fee_rate_sat_per_kw):
-        """Unlock encrypted wallet at lnd startup"""
+        """Deposit coins into collaborative pool multisig"""
         request = traderrpc.DepositAccountRequest(
             trader_key=trader_key,
             amount_sat=amount_sat,
@@ -42,21 +33,21 @@ class PoolClient(BaseClient):
 
     @handle_rpc_errors
     def get_info(self):
-        """Unlock encrypted wallet at lnd startup"""
+        """Get info about the pool daemon"""
         request = traderrpc.GetInfoRequest()
         response = self._trader_stub.GetInfo(request)
         return response
 
     @handle_rpc_errors
     def get_lsat_tokens(self):
-        """Unlock encrypted wallet at lnd startup"""
+        """List available LSAT tokens"""
         request = traderrpc.TokensRequest()
         response = self._trader_stub.GetLsatTokens(request)
         return response
 
     @handle_rpc_errors
     def init_account(self, **kwargs):
-        """Unlock encrypted wallet at lnd startup"""
+        """Create a new pool account"""
         request = traderrpc.InitAccountRequest(**kwargs)
         response = self._trader_stub.InitAccount(request)
         return response

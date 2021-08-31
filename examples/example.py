@@ -17,8 +17,7 @@ if credential_path == None:
 else:
 	credential_path = Path(credential_path)
 
-pool_ip = "192.168.1.58"
-# pool_ip = "73.203.90.31"
+pool_ip = os.getenv("POOL_IP")
 
 mac = str(credential_path.joinpath("pool.macaroon").absolute())
 tls = str(credential_path.joinpath("tls.cert").absolute())
@@ -31,6 +30,7 @@ pool = PoolClient(
 
 pool.get_info()
 
+pool.batch_snapshots(b"0",0)
 
 order = traderrpc.Order(
     trader_key=bytes.fromhex("032d7f1b7f225dc6f6a6541112fa2f387bd6af5f5ae4cc02051c39df626a5510a6"),
