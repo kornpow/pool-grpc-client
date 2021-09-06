@@ -30,7 +30,7 @@ pool = PoolClient(
 
 pool.get_info()
 
-pool.batch_snapshots(b"0",0)
+pool.batch_snapshots(b"",0)
 
 order = traderrpc.Order(
     trader_key=bytes.fromhex("032d7f1b7f225dc6f6a6541112fa2f387bd6af5f5ae4cc02051c39df626a5510a6"),
