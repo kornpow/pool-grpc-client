@@ -22,10 +22,13 @@ pool_ip = os.getenv("POOL_IP")
 mac = str(credential_path.joinpath("pool.macaroon").absolute())
 tls = str(credential_path.joinpath("tls.cert").absolute())
 
+pool_ip_port = f"{pool_ip}:443"
+# pool_ip_port = f"{pool_ip}:12010"
+
 pool = PoolClient(
-	f"{pool_ip}:12010",
+	pool_ip_port,
 	macaroon_filepath=mac,
-	cert_filepath=tls
+	no_tls=True
 )
 
 pool.get_info()
