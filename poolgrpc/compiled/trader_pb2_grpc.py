@@ -145,6 +145,21 @@ class TraderStub(object):
                 request_serializer=poolgrpc_dot_compiled_dot_trader__pb2.ExpectSidecarChannelRequest.SerializeToString,
                 response_deserializer=poolgrpc_dot_compiled_dot_trader__pb2.ExpectSidecarChannelResponse.FromString,
                 )
+        self.DecodeSidecarTicket = channel.unary_unary(
+                '/poolrpc.Trader/DecodeSidecarTicket',
+                request_serializer=poolgrpc_dot_compiled_dot_trader__pb2.SidecarTicket.SerializeToString,
+                response_deserializer=poolgrpc_dot_compiled_dot_trader__pb2.DecodedSidecarTicket.FromString,
+                )
+        self.ListSidecars = channel.unary_unary(
+                '/poolrpc.Trader/ListSidecars',
+                request_serializer=poolgrpc_dot_compiled_dot_trader__pb2.ListSidecarsRequest.SerializeToString,
+                response_deserializer=poolgrpc_dot_compiled_dot_trader__pb2.ListSidecarsResponse.FromString,
+                )
+        self.CancelSidecar = channel.unary_unary(
+                '/poolrpc.Trader/CancelSidecar',
+                request_serializer=poolgrpc_dot_compiled_dot_trader__pb2.CancelSidecarRequest.SerializeToString,
+                response_deserializer=poolgrpc_dot_compiled_dot_trader__pb2.CancelSidecarResponse.FromString,
+                )
 
 
 class TraderServicer(object):
@@ -404,6 +419,35 @@ class TraderServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def DecodeSidecarTicket(self, request, context):
+        """pool: `sidecar decodeticket`
+        Decodes the base58 encoded sidecar ticket into its individual data fields
+        for a more human-readable representation.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ListSidecars(self, request, context):
+        """pool: `sidecar list`
+        ListSidecars lists all sidecar tickets currently in the local database. This
+        includes tickets offered by our node as well as tickets that our node is the
+        recipient of.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def CancelSidecar(self, request, context):
+        """pool: `sidecar cancel`
+        CancelSidecar cancels the execution of a specific sidecar ticket. Depending
+        on the state of the sidecar ticket its associated bid order might be
+        canceled as well (if this ticket was offered by our node).
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_TraderServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -536,6 +580,21 @@ def add_TraderServicer_to_server(servicer, server):
                     servicer.ExpectSidecarChannel,
                     request_deserializer=poolgrpc_dot_compiled_dot_trader__pb2.ExpectSidecarChannelRequest.FromString,
                     response_serializer=poolgrpc_dot_compiled_dot_trader__pb2.ExpectSidecarChannelResponse.SerializeToString,
+            ),
+            'DecodeSidecarTicket': grpc.unary_unary_rpc_method_handler(
+                    servicer.DecodeSidecarTicket,
+                    request_deserializer=poolgrpc_dot_compiled_dot_trader__pb2.SidecarTicket.FromString,
+                    response_serializer=poolgrpc_dot_compiled_dot_trader__pb2.DecodedSidecarTicket.SerializeToString,
+            ),
+            'ListSidecars': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListSidecars,
+                    request_deserializer=poolgrpc_dot_compiled_dot_trader__pb2.ListSidecarsRequest.FromString,
+                    response_serializer=poolgrpc_dot_compiled_dot_trader__pb2.ListSidecarsResponse.SerializeToString,
+            ),
+            'CancelSidecar': grpc.unary_unary_rpc_method_handler(
+                    servicer.CancelSidecar,
+                    request_deserializer=poolgrpc_dot_compiled_dot_trader__pb2.CancelSidecarRequest.FromString,
+                    response_serializer=poolgrpc_dot_compiled_dot_trader__pb2.CancelSidecarResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -986,5 +1045,56 @@ class Trader(object):
         return grpc.experimental.unary_unary(request, target, '/poolrpc.Trader/ExpectSidecarChannel',
             poolgrpc_dot_compiled_dot_trader__pb2.ExpectSidecarChannelRequest.SerializeToString,
             poolgrpc_dot_compiled_dot_trader__pb2.ExpectSidecarChannelResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def DecodeSidecarTicket(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/poolrpc.Trader/DecodeSidecarTicket',
+            poolgrpc_dot_compiled_dot_trader__pb2.SidecarTicket.SerializeToString,
+            poolgrpc_dot_compiled_dot_trader__pb2.DecodedSidecarTicket.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ListSidecars(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/poolrpc.Trader/ListSidecars',
+            poolgrpc_dot_compiled_dot_trader__pb2.ListSidecarsRequest.SerializeToString,
+            poolgrpc_dot_compiled_dot_trader__pb2.ListSidecarsResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def CancelSidecar(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/poolrpc.Trader/CancelSidecar',
+            poolgrpc_dot_compiled_dot_trader__pb2.CancelSidecarRequest.SerializeToString,
+            poolgrpc_dot_compiled_dot_trader__pb2.CancelSidecarResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

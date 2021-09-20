@@ -185,6 +185,26 @@ service Trader {
     */
     rpc ExpectSidecarChannel (ExpectSidecarChannelRequest)
         returns (ExpectSidecarChannelResponse);
+
+    /* pool: `sidecar decodeticket`
+    Decodes the base58 encoded sidecar ticket into its individual data fields
+    for a more human-readable representation.
+    */
+    rpc DecodeSidecarTicket (SidecarTicket) returns (DecodedSidecarTicket);
+
+    /* pool: `sidecar list`
+    ListSidecars lists all sidecar tickets currently in the local database. This
+    includes tickets offered by our node as well as tickets that our node is the
+    recipient of.
+    */
+    rpc ListSidecars (ListSidecarsRequest) returns (ListSidecarsResponse);
+
+    /* pool: `sidecar cancel`
+    CancelSidecar cancels the execution of a specific sidecar ticket. Depending
+    on the state of the sidecar ticket its associated bid order might be
+    canceled as well (if this ticket was offered by our node).
+    */
+    rpc CancelSidecar (CancelSidecarRequest) returns (CancelSidecarResponse);
 }
 
 message InitAccountRequest {
@@ -488,6 +508,12 @@ message SubmitOrderResponse {
         */
         bytes accepted_order_nonce = 2;
     }
+
+    /*
+    In case a bid order was submitted for a sidecar ticket, that ticket is
+    updated with the new state and bid order nonce.
+    */
+    string updated_sidecar_ticket = 3;
 }
 
 message ListOrdersRequest {
@@ -612,7 +638,7 @@ message Bid {
     If this bid order is meant to lease a channel for another node (which is
     dubbed a "sidecar channel") then this ticket contains all information
     required for setting up that sidecar channel. The ticket is expected to be
-    the base64 encoded ticket, including the prefix and the checksum.
+    the base58 encoded ticket, including the prefix and the checksum.
     */
     string sidecar_ticket = 6;
 }
@@ -883,11 +909,11 @@ message Lease {
 
     // The order executed that resulted in the channel created.
     bytes order_nonce = 10;
-    
+
     /*
     The unique identifier for the order that was matched with that resulted
     in the channel created.
-    */ 
+    */
     bytes matched_order_nonce = 16;
 
     // Whether this channel was purchased from another trader or not.
@@ -1111,7 +1137,7 @@ message StopDaemonResponse {
 }
 
 message OfferSidecarRequest {
-    /* 
+    /*
     If false, then only the trader_key, unit, self_chan_balance, and
     lease_duration_blocks need to be set in the bid below. Otherwise, the
     fields as they're set when submitting a bid need to be filled in.
@@ -1128,13 +1154,66 @@ message OfferSidecarRequest {
 
 message SidecarTicket {
     /*
-    The complete sidecar ticket in its string encoded form which is base64 URL
+    The complete sidecar ticket in its string encoded form which is base58
     encoded, has a human readable prefix ('sidecar...') and a checksum built in.
     The string encoded version will only be used on the trader side of the API.
     All requests to the auctioneer expect the ticket to be in its raw, tlv
     encoded byte form.
     */
     string ticket = 1;
+}
+
+message DecodedSidecarTicket {
+    // The unique, pseudorandom identifier of the ticket.
+    bytes id = 1;
+
+    // The version of the ticket encoding format.
+    uint32 version = 2;
+
+    // The state of the ticket.
+    string state = 3;
+
+    // The offered channel capacity in satoshis.
+    uint64 offer_capacity = 4;
+
+    // The offered push amount in satoshis.
+    uint64 offer_push_amount = 5;
+
+    // The offered lease duration in blocks.
+    uint32 offer_lease_duration_blocks = 6;
+
+    // The public key the offer was signed with.
+    bytes offer_sign_pubkey = 7;
+
+    // The signature over the offer's digest.
+    bytes offer_signature = 8;
+
+    // Whether the offer was created with the automatic order creation flag.
+    bool offer_auto = 9;
+
+    // The recipient node's public identity key.
+    bytes recipient_node_pubkey = 10;
+
+    /*
+    The recipient node's channel multisig public key to be used for the sidecar
+    channel.
+    */
+    bytes recipient_multisig_pubkey = 11;
+
+    // The index used when deriving the above multisig pubkey.
+    uint32 recipient_multisig_pubkey_index = 12;
+
+    // The nonce of the bid order created for this sidecar ticket.
+    bytes order_bid_nonce = 13;
+
+    /*
+    The signature over the order's digest, signed with the private key that
+    corresponds to the offer_sign_pubkey.
+    */
+    bytes order_signature = 14;
+
+    // The pending channel ID of the sidecar channel during the execution phase.
+    bytes execution_pending_channel_id = 15;
 }
 
 message RegisterSidecarRequest {
@@ -1163,4 +1242,18 @@ message ExpectSidecarChannelRequest {
 }
 
 message ExpectSidecarChannelResponse {
+}
+
+message ListSidecarsRequest {
+}
+
+message ListSidecarsResponse {
+    repeated DecodedSidecarTicket tickets = 1;
+}
+
+message CancelSidecarRequest {
+    bytes sidecar_id = 1;
+}
+
+message CancelSidecarResponse {
 }

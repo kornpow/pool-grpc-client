@@ -104,3 +104,7 @@ ENV/
 .idea/
 
 .pytest_cache/
+
+
+# Need this for generating protos, but dont add the files to the repo
+poolgrpc/googleapis

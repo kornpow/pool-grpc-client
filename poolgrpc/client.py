@@ -225,3 +225,24 @@ class PoolClient(BaseClient):
         )
         response = self._trader_stub.CloseAccount(request)
         return response
+
+    @handle_rpc_errors
+    def list_sidecars(self):
+        """List the sidecar tickets currently in-flight"""
+        request = traderrpc.ListSidecarsRequest()
+        response = self._trader_stub.ListSidecars(request)
+        return response
+
+    @handle_rpc_errors
+    def cancel_sidecar(self, ticket):
+        """Cancel a sidecar ticket currently in-flight"""
+        request = traderrpc.CancelSidecarRequest(ticket=ticket)
+        response = self._trader_stub.ExpectSidecarChannel(request)
+        return response
+
+    @handle_rpc_errors
+    def decode_sidecar_ticket(self, ticket):
+        """Decode a sidecar ticket into a useable form"""
+        request = traderrpc.SidecarTicket(ticket=ticket)
+        response = self._trader_stub.DecodedSidecarTicket(request)
+        return response
