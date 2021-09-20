@@ -70,7 +70,7 @@ class PoolClient(BaseClient):
         return response
 
     @handle_rpc_errors
-    def list_accounts(self, active_only):
+    def list_accounts(self, active_only=False):
         """List trader accounts"""
         request = traderrpc.ListAccountsRequest(
             active_only=active_only
@@ -214,4 +214,14 @@ class PoolClient(BaseClient):
             order_nonce=order_nonce
         )
         response = self._trader_stub.CancelOrder(request)
+        return response
+
+    @handle_rpc_errors
+    def close_account(self, trader_key, **kwargs):
+        """Close the given account and withdraw funds onchain"""
+        request = traderrpc.CloseAccountRequest(
+            trader_key=trader_key,
+            **kwargs
+        )
+        response = self._trader_stub.CloseAccount(request)
         return response

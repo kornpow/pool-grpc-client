@@ -63,6 +63,18 @@ git clone https://github.com/googleapis/googleapis.git
 # python -m grpc_tools.protoc --proto_path=googleapis:. --python_out=. --grpc_python_out=. rpc.proto
 ```
 
+```
+mkvirtualenv gen_rpc_protos
+# or 
+workon gen_rpc_protos
+# then
+
+pip install grpcio grpcio-tools googleapis-common-protos sh
+
+cd pool-grpc-client
+```
+
+
 ```python
 from pathlib import Path
 import shutil
