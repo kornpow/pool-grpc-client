@@ -234,15 +234,15 @@ class PoolClient(BaseClient):
         return response
 
     @handle_rpc_errors
-    def cancel_sidecar(self, ticket):
+    def cancel_sidecar(self, sidecar_id):
         """Cancel a sidecar ticket currently in-flight"""
-        request = traderrpc.CancelSidecarRequest(ticket=ticket)
-        response = self._trader_stub.ExpectSidecarChannel(request)
+        request = traderrpc.CancelSidecarRequest(sidecar_id=sidecar_id)
+        response = self._trader_stub.CancelSidecar(request)
         return response
 
     @handle_rpc_errors
     def decode_sidecar_ticket(self, ticket):
         """Decode a sidecar ticket into a useable form"""
         request = traderrpc.SidecarTicket(ticket=ticket)
-        response = self._trader_stub.DecodedSidecarTicket(request)
+        response = self._trader_stub.DecodeSidecarTicket(request)
         return response
