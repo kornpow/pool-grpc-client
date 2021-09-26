@@ -1214,6 +1214,9 @@ message DecodedSidecarTicket {
 
     // The pending channel ID of the sidecar channel during the execution phase.
     bytes execution_pending_channel_id = 15;
+
+    // The original, base58 encoded ticket.
+    string encoded_ticket = 16;
 }
 
 message RegisterSidecarRequest {

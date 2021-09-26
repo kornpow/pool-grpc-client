@@ -52,16 +52,7 @@ lnd = LNDClient(
 ```
 
 ## Generating LND Proto Files
-```bash
-virtualenv lnd
-source lnd/bin/activate
-pip install grpcio grpcio-tools googleapis-common-protos sh
-git clone https://github.com/lightningnetwork/lnd.git
-mkdir genprotos
-git clone https://github.com/googleapis/googleapis.git
 
-# python -m grpc_tools.protoc --proto_path=googleapis:. --python_out=. --grpc_python_out=. rpc.proto
-```
 
 ```
 mkvirtualenv gen_rpc_protos
@@ -71,7 +62,9 @@ workon gen_rpc_protos
 
 pip install grpcio grpcio-tools googleapis-common-protos sh
 
-cd pool-grpc-client
+cd poolgrpc
+git clone --depth 1 https://github.com/googleapis/googleapis.git
+cd ..
 ```
 
 
@@ -102,12 +95,6 @@ for protofile in protos:
 sh.python(args)
 ```
 
-Last Step:
-In File: verrpc_pb2_grpc.py
-Change:
-import verrpc_pb2 as verrpc__pb2
-To:
-from lndgrpc import verrpc_pb2 as verrpc__pb2
 
 ## Deploy to Test-PyPi
 ```bash

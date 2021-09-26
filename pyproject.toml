@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pool-grpc-client"
-version = "0.0.14"
+version = "0.0.16"
 description = "An rpc client for LL Pool (Rent Channels)"
 authors = ["Kornpow <test@email.com>"]
 readme = "README.md"
