@@ -231,9 +231,9 @@ class PoolClient(BaseClient):
         return response
 
     @handle_rpc_errors
-    def list_sidecars(self):
+    def list_sidecars(self,sidecar_id=None):
         """List the sidecar tickets currently in-flight"""
-        request = traderrpc.ListSidecarsRequest()
+        request = traderrpc.ListSidecarsRequest(sidecar_id=sidecar_id)
         response = self._trader_stub.ListSidecars(request)
         return response
 
