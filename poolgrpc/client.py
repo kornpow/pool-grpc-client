@@ -171,6 +171,10 @@ class PoolClient(BaseClient):
             fee_rate_sat_per_kw=fee_rate_sat_per_kw
         )
         response = self._trader_stub.RenewAccount(request)
+        txid = response.account.latest_txid
+        txid = bytearray(txid)
+        txid.reverse()
+        print(f"Latest TXID: {txid.hex()}")
         return response
 
 
