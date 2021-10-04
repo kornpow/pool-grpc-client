@@ -186,7 +186,7 @@ service Trader {
     rpc ExpectSidecarChannel (ExpectSidecarChannelRequest)
         returns (ExpectSidecarChannelResponse);
 
-    /* pool: `sidecar decodeticket`
+    /* pool: `sidecar printticket`
     Decodes the base58 encoded sidecar ticket into its individual data fields
     for a more human-readable representation.
     */
@@ -195,7 +195,7 @@ service Trader {
     /* pool: `sidecar list`
     ListSidecars lists all sidecar tickets currently in the local database. This
     includes tickets offered by our node as well as tickets that our node is the
-    recipient of.
+    recipient of. Optionally a ticket ID can be provided to filter the tickets.
     */
     rpc ListSidecars (ListSidecarsRequest) returns (ListSidecarsResponse);
 
@@ -221,8 +221,11 @@ message InitAccountRequest {
         */
         uint32 conf_target = 4;
 
-        // TODO(guggero): Add sat_per_vbyte as soon as lnd has a parameter for
-        // that in rpcServer.EstimateFee.
+        /*
+        The fee rate, in satoshis per kw, to use for the initial funding
+        transaction.
+        */
+        uint64 fee_rate_sat_per_kw = 6;
     }
 
     /*
@@ -1248,6 +1251,20 @@ message ExpectSidecarChannelResponse {
 }
 
 message ListSidecarsRequest {
+    /*
+    The optional sidecar ID to filter for. If set, the result should either be
+    a single ticket or no ticket in most cases. But because the ID is just 8
+    bytes and is randomly generated, there could be collisions, especially since
+    tickets can also be crafted by a malicious party and given to any node.
+    That's why the offer's public key is also used as an identifying element
+    since that cannot easily be forged without also producing a valid signature.
+    So an attacker cannot overwrite a ticket a node offered by themselves
+    offering a ticket with the same ID and tricking the victim into registering
+    that. Long story sort, there could be multiple tickets with the same ID but
+    different offer public keys, which is why those keys should be checked as
+    well.
+    */
+    bytes sidecar_id = 1;
 }
 
 message ListSidecarsResponse {

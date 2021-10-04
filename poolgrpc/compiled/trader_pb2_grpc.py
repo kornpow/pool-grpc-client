@@ -420,7 +420,7 @@ class TraderServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def DecodeSidecarTicket(self, request, context):
-        """pool: `sidecar decodeticket`
+        """pool: `sidecar printticket`
         Decodes the base58 encoded sidecar ticket into its individual data fields
         for a more human-readable representation.
         """
@@ -432,7 +432,7 @@ class TraderServicer(object):
         """pool: `sidecar list`
         ListSidecars lists all sidecar tickets currently in the local database. This
         includes tickets offered by our node as well as tickets that our node is the
-        recipient of.
+        recipient of. Optionally a ticket ID can be provided to filter the tickets.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
