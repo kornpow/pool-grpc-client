@@ -27,9 +27,16 @@ def handle_rpc_errors(fnc):
             # elif exc.code() == grpc.StatusCode.PERMISSION_DENIED:
             print(f"GRPC STATUS: {exc.code().value[1]}")
             print(f"ERROR MESSAGE: {exc.details()}")
-            return exc.details()
+            # return exc.details()
+            raise PoolException(exc.details())
             # if exc.code() == grpc.StatusCode.UNIMPLEMENTED:
             #     raise WalletEncryptedError from None
             # else:
             #     raise exc
     return wrapper
+
+
+class PoolException(Exception):
+    def __init__(self, message="Pool Exception"):
+        self.message = message
+        super().__init__(self.message)
