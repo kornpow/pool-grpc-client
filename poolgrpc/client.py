@@ -101,7 +101,8 @@ class PoolClient(BaseClient):
 
     @handle_rpc_errors
     def node_ratings(self, node_pubkeys=[]):
-        """Unlock encrypted wallet at lnd startup"""
+        """Get node ratings given a list of pubkeys"""
+        node_pubkeys = [bytes.fromhex(x) for x in node_pubkeys]
         request = traderrpc.NodeRatingRequest(node_pubkeys=node_pubkeys)
         response = self._trader_stub.NodeRatings(request)
         return response
