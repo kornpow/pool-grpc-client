@@ -18,12 +18,13 @@ else:
 	credential_path = Path(credential_path)
 
 pool_ip = os.getenv("POOL_IP")
+pool_port = os.getenv("POOL_PORT")
 
 mac = str(credential_path.joinpath("pool.macaroon").absolute())
 tls = str(credential_path.joinpath("tls.cert").absolute())
 
-# pool_ip_port = f"{pool_ip}:443"
-pool_ip_port = f"{pool_ip}:12010"
+pool_ip_port = f"{pool_ip}:{pool_port}"
+
 
 pool = PoolClient(
 	pool_ip_port,
@@ -31,6 +32,13 @@ pool = PoolClient(
     cert_filepath=tls,
 	# no_tls=True
 )
+
+# pool = PoolClient(
+# 	pool_ip_port,
+# 	macaroon_filepath=mac,
+#     cert_filepath="pool.cert",
+# 	# no_tls=True
+# )
 
 pool.get_info()
 
@@ -52,3 +60,20 @@ sidecar_bid = traderrpc.Bid(
 )
 
 pool.submit_order(bid=sidecar_bid)
+
+
+order = traderrpc.Order(
+    trader_key=bytes.fromhex("032d7f1b7f225dc6f6a6541112fa2f387bd6af5f5ae4cc02051c39df626a5510a6"),
+    rate_fixed=700,
+    amt=30_000_000,
+    min_units_match=1,
+    max_batch_fee_rate_sat_per_kw=1500
+)
+
+myask = traderrpc.Ask(
+    details=order,
+    lease_duration_blocks=2016,
+    version=4,
+)
+
+pool.submit_order(ask=myask)
