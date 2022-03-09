@@ -21,7 +21,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'Z%github.com/lightninglabs/pool/poolrpc',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x1epoolgrpc/compiled/trader.proto\x12\x07poolrpc\x1a\"poolgrpc/compiled/auctioneer.proto\"\xc4\x01\n\x12InitAccountRequest\x12\x15\n\raccount_value\x18\x01 \x01(\x04\x12\x19\n\x0f\x61\x62solute_height\x18\x02 \x01(\rH\x00\x12\x19\n\x0frelative_height\x18\x03 \x01(\rH\x00\x12\x15\n\x0b\x63onf_target\x18\x04 \x01(\rH\x01\x12\x1d\n\x13\x66\x65\x65_rate_sat_per_kw\x18\x06 \x01(\x04H\x01\x12\x11\n\tinitiator\x18\x05 \x01(\tB\x10\n\x0e\x61\x63\x63ount_expiryB\x06\n\x04\x66\x65\x65s\"K\n\x13QuoteAccountRequest\x12\x15\n\raccount_value\x18\x01 \x01(\x04\x12\x15\n\x0b\x63onf_target\x18\x02 \x01(\rH\x00\x42\x06\n\x04\x66\x65\x65s\"R\n\x14QuoteAccountResponse\x12!\n\x19miner_fee_rate_sat_per_kw\x18\x01 \x01(\x04\x12\x17\n\x0fminer_fee_total\x18\x02 \x01(\x04\"*\n\x13ListAccountsRequest\x12\x13\n\x0b\x61\x63tive_only\x18\x01 \x01(\x08\":\n\x14ListAccountsResponse\x12\"\n\x08\x61\x63\x63ounts\x18\x01 \x03(\x0b\x32\x10.poolrpc.Account\",\n\x06Output\x12\x11\n\tvalue_sat\x18\x01 \x01(\x04\x12\x0f\n\x07\x61\x64\x64ress\x18\x02 \x01(\t\"^\n\rOutputWithFee\x12\x0f\n\x07\x61\x64\x64ress\x18\x01 \x01(\t\x12\x15\n\x0b\x63onf_target\x18\x02 \x01(\rH\x00\x12\x1d\n\x13\x66\x65\x65_rate_sat_per_kw\x18\x03 \x01(\x04H\x00\x42\x06\n\x04\x66\x65\x65s\":\n\x16OutputsWithImplicitFee\x12 \n\x07outputs\x18\x01 \x03(\x0b\x32\x0f.poolrpc.Output\"\xa5\x01\n\x13\x43loseAccountRequest\x12\x12\n\ntrader_key\x18\x01 \x01(\x0c\x12\x31\n\x0foutput_with_fee\x18\x02 \x01(\x0b\x32\x16.poolrpc.OutputWithFeeH\x00\x12\x32\n\x07outputs\x18\x03 \x01(\x0b\x32\x1f.poolrpc.OutputsWithImplicitFeeH\x00\x42\x13\n\x11\x66unds_destination\"*\n\x14\x43loseAccountResponse\x12\x12\n\nclose_txid\x18\x01 \x01(\x0c\"\xb3\x01\n\x16WithdrawAccountRequest\x12\x12\n\ntrader_key\x18\x01 \x01(\x0c\x12 \n\x07outputs\x18\x02 \x03(\x0b\x32\x0f.poolrpc.Output\x12\x1b\n\x13\x66\x65\x65_rate_sat_per_kw\x18\x03 \x01(\x04\x12\x19\n\x0f\x61\x62solute_expiry\x18\x04 \x01(\rH\x00\x12\x19\n\x0frelative_expiry\x18\x05 \x01(\rH\x00\x42\x10\n\x0e\x61\x63\x63ount_expiry\"S\n\x17WithdrawAccountResponse\x12!\n\x07\x61\x63\x63ount\x18\x01 \x01(\x0b\x32\x10.poolrpc.Account\x12\x15\n\rwithdraw_txid\x18\x02 \x01(\x0c\"\xa4\x01\n\x15\x44\x65positAccountRequest\x12\x12\n\ntrader_key\x18\x01 \x01(\x0c\x12\x12\n\namount_sat\x18\x02 \x01(\x04\x12\x1b\n\x13\x66\x65\x65_rate_sat_per_kw\x18\x03 \x01(\x04\x12\x19\n\x0f\x61\x62solute_expiry\x18\x04 \x01(\rH\x00\x12\x19\n\x0frelative_expiry\x18\x05 \x01(\rH\x00\x42\x10\n\x0e\x61\x63\x63ount_expiry\"Q\n\x16\x44\x65positAccountResponse\x12!\n\x07\x61\x63\x63ount\x18\x01 \x01(\x0b\x32\x10.poolrpc.Account\x12\x14\n\x0c\x64\x65posit_txid\x18\x02 \x01(\x0c\"\x8f\x01\n\x13RenewAccountRequest\x12\x13\n\x0b\x61\x63\x63ount_key\x18\x01 \x01(\x0c\x12\x19\n\x0f\x61\x62solute_expiry\x18\x02 \x01(\rH\x00\x12\x19\n\x0frelative_expiry\x18\x03 \x01(\rH\x00\x12\x1b\n\x13\x66\x65\x65_rate_sat_per_kw\x18\x04 \x01(\x04\x42\x10\n\x0e\x61\x63\x63ount_expiry\"O\n\x14RenewAccountResponse\x12!\n\x07\x61\x63\x63ount\x18\x01 \x01(\x0b\x32\x10.poolrpc.Account\x12\x14\n\x0crenewal_txid\x18\x02 \x01(\x0c\"H\n\x15\x42umpAccountFeeRequest\x12\x12\n\ntrader_key\x18\x01 \x01(\x0c\x12\x1b\n\x13\x66\x65\x65_rate_sat_per_kw\x18\x02 \x01(\x04\"\x18\n\x16\x42umpAccountFeeResponse\"\xc2\x01\n\x07\x41\x63\x63ount\x12\x12\n\ntrader_key\x18\x01 \x01(\x0c\x12#\n\x08outpoint\x18\x02 \x01(\x0b\x32\x11.poolrpc.OutPoint\x12\r\n\x05value\x18\x03 \x01(\x04\x12\x19\n\x11\x61vailable_balance\x18\x04 \x01(\x04\x12\x19\n\x11\x65xpiration_height\x18\x05 \x01(\r\x12$\n\x05state\x18\x06 \x01(\x0e\x32\x15.poolrpc.AccountState\x12\x13\n\x0blatest_txid\x18\x07 \x01(\x0c\"l\n\x12SubmitOrderRequest\x12\x1b\n\x03\x61sk\x18\x01 \x01(\x0b\x32\x0c.poolrpc.AskH\x00\x12\x1b\n\x03\x62id\x18\x02 \x01(\x0b\x32\x0c.poolrpc.BidH\x00\x12\x11\n\tinitiator\x18\x03 \x01(\tB\t\n\x07\x64\x65tails\"\x90\x01\n\x13SubmitOrderResponse\x12.\n\rinvalid_order\x18\x01 \x01(\x0b\x32\x15.poolrpc.InvalidOrderH\x00\x12\x1e\n\x14\x61\x63\x63\x65pted_order_nonce\x18\x02 \x01(\x0cH\x00\x12\x1e\n\x16updated_sidecar_ticket\x18\x03 \x01(\tB\t\n\x07\x64\x65tails\"9\n\x11ListOrdersRequest\x12\x0f\n\x07verbose\x18\x01 \x01(\x08\x12\x13\n\x0b\x61\x63tive_only\x18\x02 \x01(\x08\"L\n\x12ListOrdersResponse\x12\x1a\n\x04\x61sks\x18\x01 \x03(\x0b\x32\x0c.poolrpc.Ask\x12\x1a\n\x04\x62ids\x18\x02 \x03(\x0b\x32\x0c.poolrpc.Bid\")\n\x12\x43\x61ncelOrderRequest\x12\x13\n\x0border_nonce\x18\x01 \x01(\x0c\"\x15\n\x13\x43\x61ncelOrderResponse\"\xf0\x02\n\x05Order\x12\x12\n\ntrader_key\x18\x01 \x01(\x0c\x12\x12\n\nrate_fixed\x18\x02 \x01(\r\x12\x0b\n\x03\x61mt\x18\x03 \x01(\x04\x12%\n\x1dmax_batch_fee_rate_sat_per_kw\x18\x04 \x01(\x04\x12\x13\n\x0border_nonce\x18\x05 \x01(\x0c\x12\"\n\x05state\x18\x06 \x01(\x0e\x32\x13.poolrpc.OrderState\x12\r\n\x05units\x18\x07 \x01(\r\x12\x19\n\x11units_unfulfilled\x18\x08 \x01(\r\x12\x1a\n\x12reserved_value_sat\x18\t \x01(\x04\x12\x1d\n\x15\x63reation_timestamp_ns\x18\n \x01(\x04\x12#\n\x06\x65vents\x18\x0b \x03(\x0b\x32\x13.poolrpc.OrderEvent\x12\x17\n\x0fmin_units_match\x18\x0c \x01(\r\x12/\n\x0c\x63hannel_type\x18\r \x01(\x0e\x32\x19.poolrpc.OrderChannelType\"\xb3\x01\n\x03\x42id\x12\x1f\n\x07\x64\x65tails\x18\x01 \x01(\x0b\x32\x0e.poolrpc.Order\x12\x1d\n\x15lease_duration_blocks\x18\x02 \x01(\r\x12\x0f\n\x07version\x18\x03 \x01(\r\x12(\n\rmin_node_tier\x18\x04 \x01(\x0e\x32\x11.poolrpc.NodeTier\x12\x19\n\x11self_chan_balance\x18\x05 \x01(\x04\x12\x16\n\x0esidecar_ticket\x18\x06 \x01(\t\"V\n\x03\x41sk\x12\x1f\n\x07\x64\x65tails\x18\x01 \x01(\x0b\x32\x0e.poolrpc.Order\x12\x1d\n\x15lease_duration_blocks\x18\x02 \x01(\r\x12\x0f\n\x07version\x18\x03 \x01(\r\"\x93\x01\n\x11QuoteOrderRequest\x12\x0b\n\x03\x61mt\x18\x01 \x01(\x04\x12\x12\n\nrate_fixed\x18\x02 \x01(\r\x12\x1d\n\x15lease_duration_blocks\x18\x03 \x01(\r\x12%\n\x1dmax_batch_fee_rate_sat_per_kw\x18\x04 \x01(\x04\x12\x17\n\x0fmin_units_match\x18\x05 \x01(\r\"\xa0\x01\n\x12QuoteOrderResponse\x12\x19\n\x11total_premium_sat\x18\x01 \x01(\x04\x12\x16\n\x0erate_per_block\x18\x02 \x01(\x01\x12\x14\n\x0crate_percent\x18\x03 \x01(\x01\x12\x1f\n\x17total_execution_fee_sat\x18\x04 \x01(\x04\x12 \n\x18worst_case_chain_fee_sat\x18\x05 \x01(\x04\"\x95\x01\n\nOrderEvent\x12\x14\n\x0ctimestamp_ns\x18\x01 \x01(\x03\x12\x11\n\tevent_str\x18\x02 \x01(\t\x12-\n\x0cstate_change\x18\x03 \x01(\x0b\x32\x15.poolrpc.UpdatedEventH\x00\x12&\n\x07matched\x18\x04 \x01(\x0b\x32\x13.poolrpc.MatchEventH\x00\x42\x07\n\x05\x65vent\"y\n\x0cUpdatedEvent\x12+\n\x0eprevious_state\x18\x01 \x01(\x0e\x32\x13.poolrpc.OrderState\x12&\n\tnew_state\x18\x02 \x01(\x0e\x32\x13.poolrpc.OrderState\x12\x14\n\x0cunits_filled\x18\x03 \x01(\r\"\x96\x01\n\nMatchEvent\x12(\n\x0bmatch_state\x18\x01 \x01(\x0e\x32\x13.poolrpc.MatchState\x12\x14\n\x0cunits_filled\x18\x02 \x01(\r\x12\x15\n\rmatched_order\x18\x03 \x01(\x0c\x12\x31\n\rreject_reason\x18\x04 \x01(\x0e\x32\x1a.poolrpc.MatchRejectReason\"\x18\n\x16RecoverAccountsRequest\"9\n\x17RecoverAccountsResponse\x12\x1e\n\x16num_recovered_accounts\x18\x01 \x01(\r\"\x13\n\x11\x41uctionFeeRequest\"B\n\x12\x41uctionFeeResponse\x12,\n\rexecution_fee\x18\x01 \x01(\x0b\x32\x15.poolrpc.ExecutionFee\"\xcf\x03\n\x05Lease\x12(\n\rchannel_point\x18\x01 \x01(\x0b\x32\x11.poolrpc.OutPoint\x12\x17\n\x0f\x63hannel_amt_sat\x18\x02 \x01(\x04\x12\x1f\n\x17\x63hannel_duration_blocks\x18\x03 \x01(\r\x12\x1c\n\x14\x63hannel_lease_expiry\x18\x04 \x01(\r\x12\x13\n\x0bpremium_sat\x18\x05 \x01(\x04\x12\x19\n\x11\x65xecution_fee_sat\x18\x06 \x01(\x04\x12\x15\n\rchain_fee_sat\x18\x07 \x01(\x04\x12\x1b\n\x13\x63learing_rate_price\x18\x08 \x01(\x04\x12\x18\n\x10order_fixed_rate\x18\t \x01(\x04\x12\x13\n\x0border_nonce\x18\n \x01(\x0c\x12\x1b\n\x13matched_order_nonce\x18\x10 \x01(\x0c\x12\x11\n\tpurchased\x18\x0b \x01(\x08\x12\x1f\n\x17\x63hannel_remote_node_key\x18\x0c \x01(\x0c\x12,\n\x11\x63hannel_node_tier\x18\r \x01(\x0e\x32\x11.poolrpc.NodeTier\x12\x19\n\x11self_chan_balance\x18\x0e \x01(\x04\x12\x17\n\x0fsidecar_channel\x18\x0f \x01(\x08\"4\n\rLeasesRequest\x12\x11\n\tbatch_ids\x18\x01 \x03(\x0c\x12\x10\n\x08\x61\x63\x63ounts\x18\x02 \x03(\x0c\"j\n\x0eLeasesResponse\x12\x1e\n\x06leases\x18\x01 \x03(\x0b\x32\x0e.poolrpc.Lease\x12\x1c\n\x14total_amt_earned_sat\x18\x02 \x01(\x04\x12\x1a\n\x12total_amt_paid_sat\x18\x03 \x01(\x04\"\x0f\n\rTokensRequest\"4\n\x0eTokensResponse\x12\"\n\x06tokens\x18\x01 \x03(\x0b\x32\x12.poolrpc.LsatToken\"\xc8\x01\n\tLsatToken\x12\x15\n\rbase_macaroon\x18\x01 \x01(\x0c\x12\x14\n\x0cpayment_hash\x18\x02 \x01(\x0c\x12\x18\n\x10payment_preimage\x18\x03 \x01(\x0c\x12\x18\n\x10\x61mount_paid_msat\x18\x04 \x01(\x03\x12\x1d\n\x15routing_fee_paid_msat\x18\x05 \x01(\x03\x12\x14\n\x0ctime_created\x18\x06 \x01(\x03\x12\x0f\n\x07\x65xpired\x18\x07 \x01(\x08\x12\x14\n\x0cstorage_name\x18\x08 \x01(\t\"\x16\n\x14LeaseDurationRequest\"\xd4\x02\n\x15LeaseDurationResponse\x12O\n\x0flease_durations\x18\x01 \x03(\x0b\x32\x32.poolrpc.LeaseDurationResponse.LeaseDurationsEntryB\x02\x18\x01\x12X\n\x16lease_duration_buckets\x18\x02 \x03(\x0b\x32\x38.poolrpc.LeaseDurationResponse.LeaseDurationBucketsEntry\x1a\x35\n\x13LeaseDurationsEntry\x12\x0b\n\x03key\x18\x01 \x01(\r\x12\r\n\x05value\x18\x02 \x01(\x08:\x02\x38\x01\x1aY\n\x19LeaseDurationBucketsEntry\x12\x0b\n\x03key\x18\x01 \x01(\r\x12+\n\x05value\x18\x02 \x01(\x0e\x32\x1c.poolrpc.DurationBucketState:\x02\x38\x01\"\x16\n\x14NextBatchInfoRequest\"\x87\x01\n\x15NextBatchInfoResponse\x12\x13\n\x0b\x63onf_target\x18\x05 \x01(\r\x12\x1b\n\x13\x66\x65\x65_rate_sat_per_kw\x18\x06 \x01(\x04\x12\x17\n\x0f\x63lear_timestamp\x18\x07 \x01(\x04\x12#\n\x1b\x61uto_renew_extension_blocks\x18\x08 \x01(\r\")\n\x11NodeRatingRequest\x12\x14\n\x0cnode_pubkeys\x18\x01 \x03(\x0c\"?\n\x12NodeRatingResponse\x12)\n\x0cnode_ratings\x18\x01 \x03(\x0b\x32\x13.poolrpc.NodeRating\"\x10\n\x0eGetInfoRequest\"\x8d\x04\n\x0fGetInfoResponse\x12\x0f\n\x07version\x18\x01 \x01(\t\x12\x16\n\x0e\x61\x63\x63ounts_total\x18\x02 \x01(\r\x12\x17\n\x0f\x61\x63\x63ounts_active\x18\x03 \x01(\r\x12\x1f\n\x17\x61\x63\x63ounts_active_expired\x18\x04 \x01(\r\x12\x19\n\x11\x61\x63\x63ounts_archived\x18\x05 \x01(\r\x12\x14\n\x0corders_total\x18\x06 \x01(\r\x12\x15\n\rorders_active\x18\x07 \x01(\r\x12\x17\n\x0forders_archived\x18\x08 \x01(\r\x12\x1c\n\x14\x63urrent_block_height\x18\t \x01(\r\x12\x18\n\x10\x62\x61tches_involved\x18\n \x01(\r\x12(\n\x0bnode_rating\x18\x0b \x01(\x0b\x32\x13.poolrpc.NodeRating\x12\x13\n\x0blsat_tokens\x18\x0c \x01(\r\x12 \n\x18subscribed_to_auctioneer\x18\r \x01(\x08\x12\x16\n\x0enew_nodes_only\x18\x0e \x01(\x08\x12=\n\x0bmarket_info\x18\x0f \x03(\x0b\x32(.poolrpc.GetInfoResponse.MarketInfoEntry\x1a\x46\n\x0fMarketInfoEntry\x12\x0b\n\x03key\x18\x01 \x01(\r\x12\"\n\x05value\x18\x02 \x01(\x0b\x32\x13.poolrpc.MarketInfo:\x02\x38\x01\"\x13\n\x11StopDaemonRequest\"\x14\n\x12StopDaemonResponse\"H\n\x13OfferSidecarRequest\x12\x16\n\x0e\x61uto_negotiate\x18\x01 \x01(\x08\x12\x19\n\x03\x62id\x18\x02 \x01(\x0b\x32\x0c.poolrpc.Bid\"\x1f\n\rSidecarTicket\x12\x0e\n\x06ticket\x18\x01 \x01(\t\"\xbd\x03\n\x14\x44\x65\x63odedSidecarTicket\x12\n\n\x02id\x18\x01 \x01(\x0c\x12\x0f\n\x07version\x18\x02 \x01(\r\x12\r\n\x05state\x18\x03 \x01(\t\x12\x16\n\x0eoffer_capacity\x18\x04 \x01(\x04\x12\x19\n\x11offer_push_amount\x18\x05 \x01(\x04\x12#\n\x1boffer_lease_duration_blocks\x18\x06 \x01(\r\x12\x19\n\x11offer_sign_pubkey\x18\x07 \x01(\x0c\x12\x17\n\x0foffer_signature\x18\x08 \x01(\x0c\x12\x12\n\noffer_auto\x18\t \x01(\x08\x12\x1d\n\x15recipient_node_pubkey\x18\n \x01(\x0c\x12!\n\x19recipient_multisig_pubkey\x18\x0b \x01(\x0c\x12\'\n\x1frecipient_multisig_pubkey_index\x18\x0c \x01(\r\x12\x17\n\x0forder_bid_nonce\x18\r \x01(\x0c\x12\x17\n\x0forder_signature\x18\x0e \x01(\x0c\x12$\n\x1c\x65xecution_pending_channel_id\x18\x0f \x01(\x0c\x12\x16\n\x0e\x65ncoded_ticket\x18\x10 \x01(\t\"@\n\x16RegisterSidecarRequest\x12\x0e\n\x06ticket\x18\x01 \x01(\t\x12\x16\n\x0e\x61uto_negotiate\x18\x02 \x01(\x08\"-\n\x1b\x45xpectSidecarChannelRequest\x12\x0e\n\x06ticket\x18\x01 \x01(\t\"\x1e\n\x1c\x45xpectSidecarChannelResponse\")\n\x13ListSidecarsRequest\x12\x12\n\nsidecar_id\x18\x01 \x01(\x0c\"F\n\x14ListSidecarsResponse\x12.\n\x07tickets\x18\x01 \x03(\x0b\x32\x1d.poolrpc.DecodedSidecarTicket\"*\n\x14\x43\x61ncelSidecarRequest\x12\x12\n\nsidecar_id\x18\x01 \x01(\x0c\"\x17\n\x15\x43\x61ncelSidecarResponse*\x93\x01\n\x0c\x41\x63\x63ountState\x12\x10\n\x0cPENDING_OPEN\x10\x00\x12\x12\n\x0ePENDING_UPDATE\x10\x01\x12\x08\n\x04OPEN\x10\x02\x12\x0b\n\x07\x45XPIRED\x10\x03\x12\x12\n\x0ePENDING_CLOSED\x10\x04\x12\n\n\x06\x43LOSED\x10\x05\x12\x13\n\x0fRECOVERY_FAILED\x10\x06\x12\x11\n\rPENDING_BATCH\x10\x07*P\n\nMatchState\x12\x0b\n\x07PREPARE\x10\x00\x12\x0c\n\x08\x41\x43\x43\x45PTED\x10\x01\x12\x0c\n\x08REJECTED\x10\x02\x12\n\n\x06SIGNED\x10\x03\x12\r\n\tFINALIZED\x10\x04*\xbe\x01\n\x11MatchRejectReason\x12\x08\n\x04NONE\x10\x00\x12\x16\n\x12SERVER_MISBEHAVIOR\x10\x01\x12\x1a\n\x16\x42\x41TCH_VERSION_MISMATCH\x10\x02\x12\x1d\n\x19PARTIAL_REJECT_COLLATERAL\x10\x03\x12!\n\x1dPARTIAL_REJECT_DUPLICATE_PEER\x10\x04\x12)\n%PARTIAL_REJECT_CHANNEL_FUNDING_FAILED\x10\x05\x32\xa5\x11\n\x06Trader\x12<\n\x07GetInfo\x12\x17.poolrpc.GetInfoRequest\x1a\x18.poolrpc.GetInfoResponse\x12\x45\n\nStopDaemon\x12\x1a.poolrpc.StopDaemonRequest\x1a\x1b.poolrpc.StopDaemonResponse\x12K\n\x0cQuoteAccount\x12\x1c.poolrpc.QuoteAccountRequest\x1a\x1d.poolrpc.QuoteAccountResponse\x12<\n\x0bInitAccount\x12\x1b.poolrpc.InitAccountRequest\x1a\x10.poolrpc.Account\x12K\n\x0cListAccounts\x12\x1c.poolrpc.ListAccountsRequest\x1a\x1d.poolrpc.ListAccountsResponse\x12K\n\x0c\x43loseAccount\x12\x1c.poolrpc.CloseAccountRequest\x1a\x1d.poolrpc.CloseAccountResponse\x12T\n\x0fWithdrawAccount\x12\x1f.poolrpc.WithdrawAccountRequest\x1a .poolrpc.WithdrawAccountResponse\x12Q\n\x0e\x44\x65positAccount\x12\x1e.poolrpc.DepositAccountRequest\x1a\x1f.poolrpc.DepositAccountResponse\x12K\n\x0cRenewAccount\x12\x1c.poolrpc.RenewAccountRequest\x1a\x1d.poolrpc.RenewAccountResponse\x12Q\n\x0e\x42umpAccountFee\x12\x1e.poolrpc.BumpAccountFeeRequest\x1a\x1f.poolrpc.BumpAccountFeeResponse\x12T\n\x0fRecoverAccounts\x12\x1f.poolrpc.RecoverAccountsRequest\x1a .poolrpc.RecoverAccountsResponse\x12H\n\x0bSubmitOrder\x12\x1b.poolrpc.SubmitOrderRequest\x1a\x1c.poolrpc.SubmitOrderResponse\x12\x45\n\nListOrders\x12\x1a.poolrpc.ListOrdersRequest\x1a\x1b.poolrpc.ListOrdersResponse\x12H\n\x0b\x43\x61ncelOrder\x12\x1b.poolrpc.CancelOrderRequest\x1a\x1c.poolrpc.CancelOrderResponse\x12\x45\n\nQuoteOrder\x12\x1a.poolrpc.QuoteOrderRequest\x1a\x1b.poolrpc.QuoteOrderResponse\x12\x45\n\nAuctionFee\x12\x1a.poolrpc.AuctionFeeRequest\x1a\x1b.poolrpc.AuctionFeeResponse\x12O\n\x0eLeaseDurations\x12\x1d.poolrpc.LeaseDurationRequest\x1a\x1e.poolrpc.LeaseDurationResponse\x12N\n\rNextBatchInfo\x12\x1d.poolrpc.NextBatchInfoRequest\x1a\x1e.poolrpc.NextBatchInfoResponse\x12N\n\rBatchSnapshot\x12\x1d.poolrpc.BatchSnapshotRequest\x1a\x1e.poolrpc.BatchSnapshotResponse\x12@\n\rGetLsatTokens\x12\x16.poolrpc.TokensRequest\x1a\x17.poolrpc.TokensResponse\x12\x39\n\x06Leases\x12\x16.poolrpc.LeasesRequest\x1a\x17.poolrpc.LeasesResponse\x12\x46\n\x0bNodeRatings\x12\x1a.poolrpc.NodeRatingRequest\x1a\x1b.poolrpc.NodeRatingResponse\x12Q\n\x0e\x42\x61tchSnapshots\x12\x1e.poolrpc.BatchSnapshotsRequest\x1a\x1f.poolrpc.BatchSnapshotsResponse\x12\x44\n\x0cOfferSidecar\x12\x1c.poolrpc.OfferSidecarRequest\x1a\x16.poolrpc.SidecarTicket\x12J\n\x0fRegisterSidecar\x12\x1f.poolrpc.RegisterSidecarRequest\x1a\x16.poolrpc.SidecarTicket\x12\x63\n\x14\x45xpectSidecarChannel\x12$.poolrpc.ExpectSidecarChannelRequest\x1a%.poolrpc.ExpectSidecarChannelResponse\x12L\n\x13\x44\x65\x63odeSidecarTicket\x12\x16.poolrpc.SidecarTicket\x1a\x1d.poolrpc.DecodedSidecarTicket\x12K\n\x0cListSidecars\x12\x1c.poolrpc.ListSidecarsRequest\x1a\x1d.poolrpc.ListSidecarsResponse\x12N\n\rCancelSidecar\x12\x1d.poolrpc.CancelSidecarRequest\x1a\x1e.poolrpc.CancelSidecarResponseB\'Z%github.com/lightninglabs/pool/poolrpcb\x06proto3'
+  serialized_pb=b'\n\x1epoolgrpc/compiled/trader.proto\x12\x07poolrpc\x1a\"poolgrpc/compiled/auctioneer.proto\"\xc4\x01\n\x12InitAccountRequest\x12\x15\n\raccount_value\x18\x01 \x01(\x04\x12\x19\n\x0f\x61\x62solute_height\x18\x02 \x01(\rH\x00\x12\x19\n\x0frelative_height\x18\x03 \x01(\rH\x00\x12\x15\n\x0b\x63onf_target\x18\x04 \x01(\rH\x01\x12\x1d\n\x13\x66\x65\x65_rate_sat_per_kw\x18\x06 \x01(\x04H\x01\x12\x11\n\tinitiator\x18\x05 \x01(\tB\x10\n\x0e\x61\x63\x63ount_expiryB\x06\n\x04\x66\x65\x65s\"K\n\x13QuoteAccountRequest\x12\x15\n\raccount_value\x18\x01 \x01(\x04\x12\x15\n\x0b\x63onf_target\x18\x02 \x01(\rH\x00\x42\x06\n\x04\x66\x65\x65s\"R\n\x14QuoteAccountResponse\x12!\n\x19miner_fee_rate_sat_per_kw\x18\x01 \x01(\x04\x12\x17\n\x0fminer_fee_total\x18\x02 \x01(\x04\"*\n\x13ListAccountsRequest\x12\x13\n\x0b\x61\x63tive_only\x18\x01 \x01(\x08\":\n\x14ListAccountsResponse\x12\"\n\x08\x61\x63\x63ounts\x18\x01 \x03(\x0b\x32\x10.poolrpc.Account\",\n\x06Output\x12\x11\n\tvalue_sat\x18\x01 \x01(\x04\x12\x0f\n\x07\x61\x64\x64ress\x18\x02 \x01(\t\"^\n\rOutputWithFee\x12\x0f\n\x07\x61\x64\x64ress\x18\x01 \x01(\t\x12\x15\n\x0b\x63onf_target\x18\x02 \x01(\rH\x00\x12\x1d\n\x13\x66\x65\x65_rate_sat_per_kw\x18\x03 \x01(\x04H\x00\x42\x06\n\x04\x66\x65\x65s\":\n\x16OutputsWithImplicitFee\x12 \n\x07outputs\x18\x01 \x03(\x0b\x32\x0f.poolrpc.Output\"\xa5\x01\n\x13\x43loseAccountRequest\x12\x12\n\ntrader_key\x18\x01 \x01(\x0c\x12\x31\n\x0foutput_with_fee\x18\x02 \x01(\x0b\x32\x16.poolrpc.OutputWithFeeH\x00\x12\x32\n\x07outputs\x18\x03 \x01(\x0b\x32\x1f.poolrpc.OutputsWithImplicitFeeH\x00\x42\x13\n\x11\x66unds_destination\"*\n\x14\x43loseAccountResponse\x12\x12\n\nclose_txid\x18\x01 \x01(\x0c\"\xb3\x01\n\x16WithdrawAccountRequest\x12\x12\n\ntrader_key\x18\x01 \x01(\x0c\x12 \n\x07outputs\x18\x02 \x03(\x0b\x32\x0f.poolrpc.Output\x12\x1b\n\x13\x66\x65\x65_rate_sat_per_kw\x18\x03 \x01(\x04\x12\x19\n\x0f\x61\x62solute_expiry\x18\x04 \x01(\rH\x00\x12\x19\n\x0frelative_expiry\x18\x05 \x01(\rH\x00\x42\x10\n\x0e\x61\x63\x63ount_expiry\"S\n\x17WithdrawAccountResponse\x12!\n\x07\x61\x63\x63ount\x18\x01 \x01(\x0b\x32\x10.poolrpc.Account\x12\x15\n\rwithdraw_txid\x18\x02 \x01(\x0c\"\xa4\x01\n\x15\x44\x65positAccountRequest\x12\x12\n\ntrader_key\x18\x01 \x01(\x0c\x12\x12\n\namount_sat\x18\x02 \x01(\x04\x12\x1b\n\x13\x66\x65\x65_rate_sat_per_kw\x18\x03 \x01(\x04\x12\x19\n\x0f\x61\x62solute_expiry\x18\x04 \x01(\rH\x00\x12\x19\n\x0frelative_expiry\x18\x05 \x01(\rH\x00\x42\x10\n\x0e\x61\x63\x63ount_expiry\"Q\n\x16\x44\x65positAccountResponse\x12!\n\x07\x61\x63\x63ount\x18\x01 \x01(\x0b\x32\x10.poolrpc.Account\x12\x14\n\x0c\x64\x65posit_txid\x18\x02 \x01(\x0c\"\x8f\x01\n\x13RenewAccountRequest\x12\x13\n\x0b\x61\x63\x63ount_key\x18\x01 \x01(\x0c\x12\x19\n\x0f\x61\x62solute_expiry\x18\x02 \x01(\rH\x00\x12\x19\n\x0frelative_expiry\x18\x03 \x01(\rH\x00\x12\x1b\n\x13\x66\x65\x65_rate_sat_per_kw\x18\x04 \x01(\x04\x42\x10\n\x0e\x61\x63\x63ount_expiry\"O\n\x14RenewAccountResponse\x12!\n\x07\x61\x63\x63ount\x18\x01 \x01(\x0b\x32\x10.poolrpc.Account\x12\x14\n\x0crenewal_txid\x18\x02 \x01(\x0c\"H\n\x15\x42umpAccountFeeRequest\x12\x12\n\ntrader_key\x18\x01 \x01(\x0c\x12\x1b\n\x13\x66\x65\x65_rate_sat_per_kw\x18\x02 \x01(\x04\"\x18\n\x16\x42umpAccountFeeResponse\"\xc2\x01\n\x07\x41\x63\x63ount\x12\x12\n\ntrader_key\x18\x01 \x01(\x0c\x12#\n\x08outpoint\x18\x02 \x01(\x0b\x32\x11.poolrpc.OutPoint\x12\r\n\x05value\x18\x03 \x01(\x04\x12\x19\n\x11\x61vailable_balance\x18\x04 \x01(\x04\x12\x19\n\x11\x65xpiration_height\x18\x05 \x01(\r\x12$\n\x05state\x18\x06 \x01(\x0e\x32\x15.poolrpc.AccountState\x12\x13\n\x0blatest_txid\x18\x07 \x01(\x0c\"l\n\x12SubmitOrderRequest\x12\x1b\n\x03\x61sk\x18\x01 \x01(\x0b\x32\x0c.poolrpc.AskH\x00\x12\x1b\n\x03\x62id\x18\x02 \x01(\x0b\x32\x0c.poolrpc.BidH\x00\x12\x11\n\tinitiator\x18\x03 \x01(\tB\t\n\x07\x64\x65tails\"\x90\x01\n\x13SubmitOrderResponse\x12.\n\rinvalid_order\x18\x01 \x01(\x0b\x32\x15.poolrpc.InvalidOrderH\x00\x12\x1e\n\x14\x61\x63\x63\x65pted_order_nonce\x18\x02 \x01(\x0cH\x00\x12\x1e\n\x16updated_sidecar_ticket\x18\x03 \x01(\tB\t\n\x07\x64\x65tails\"9\n\x11ListOrdersRequest\x12\x0f\n\x07verbose\x18\x01 \x01(\x08\x12\x13\n\x0b\x61\x63tive_only\x18\x02 \x01(\x08\"L\n\x12ListOrdersResponse\x12\x1a\n\x04\x61sks\x18\x01 \x03(\x0b\x32\x0c.poolrpc.Ask\x12\x1a\n\x04\x62ids\x18\x02 \x03(\x0b\x32\x0c.poolrpc.Bid\")\n\x12\x43\x61ncelOrderRequest\x12\x13\n\x0border_nonce\x18\x01 \x01(\x0c\"\x15\n\x13\x43\x61ncelOrderResponse\"\xf0\x02\n\x05Order\x12\x12\n\ntrader_key\x18\x01 \x01(\x0c\x12\x12\n\nrate_fixed\x18\x02 \x01(\r\x12\x0b\n\x03\x61mt\x18\x03 \x01(\x04\x12%\n\x1dmax_batch_fee_rate_sat_per_kw\x18\x04 \x01(\x04\x12\x13\n\x0border_nonce\x18\x05 \x01(\x0c\x12\"\n\x05state\x18\x06 \x01(\x0e\x32\x13.poolrpc.OrderState\x12\r\n\x05units\x18\x07 \x01(\r\x12\x19\n\x11units_unfulfilled\x18\x08 \x01(\r\x12\x1a\n\x12reserved_value_sat\x18\t \x01(\x04\x12\x1d\n\x15\x63reation_timestamp_ns\x18\n \x01(\x04\x12#\n\x06\x65vents\x18\x0b \x03(\x0b\x32\x13.poolrpc.OrderEvent\x12\x17\n\x0fmin_units_match\x18\x0c \x01(\r\x12/\n\x0c\x63hannel_type\x18\r \x01(\x0e\x32\x19.poolrpc.OrderChannelType\"\xb3\x01\n\x03\x42id\x12\x1f\n\x07\x64\x65tails\x18\x01 \x01(\x0b\x32\x0e.poolrpc.Order\x12\x1d\n\x15lease_duration_blocks\x18\x02 \x01(\r\x12\x0f\n\x07version\x18\x03 \x01(\r\x12(\n\rmin_node_tier\x18\x04 \x01(\x0e\x32\x11.poolrpc.NodeTier\x12\x19\n\x11self_chan_balance\x18\x05 \x01(\x04\x12\x16\n\x0esidecar_ticket\x18\x06 \x01(\t\"V\n\x03\x41sk\x12\x1f\n\x07\x64\x65tails\x18\x01 \x01(\x0b\x32\x0e.poolrpc.Order\x12\x1d\n\x15lease_duration_blocks\x18\x02 \x01(\r\x12\x0f\n\x07version\x18\x03 \x01(\r\"\x93\x01\n\x11QuoteOrderRequest\x12\x0b\n\x03\x61mt\x18\x01 \x01(\x04\x12\x12\n\nrate_fixed\x18\x02 \x01(\r\x12\x1d\n\x15lease_duration_blocks\x18\x03 \x01(\r\x12%\n\x1dmax_batch_fee_rate_sat_per_kw\x18\x04 \x01(\x04\x12\x17\n\x0fmin_units_match\x18\x05 \x01(\r\"\xa0\x01\n\x12QuoteOrderResponse\x12\x19\n\x11total_premium_sat\x18\x01 \x01(\x04\x12\x16\n\x0erate_per_block\x18\x02 \x01(\x01\x12\x14\n\x0crate_percent\x18\x03 \x01(\x01\x12\x1f\n\x17total_execution_fee_sat\x18\x04 \x01(\x04\x12 \n\x18worst_case_chain_fee_sat\x18\x05 \x01(\x04\"\x95\x01\n\nOrderEvent\x12\x14\n\x0ctimestamp_ns\x18\x01 \x01(\x03\x12\x11\n\tevent_str\x18\x02 \x01(\t\x12-\n\x0cstate_change\x18\x03 \x01(\x0b\x32\x15.poolrpc.UpdatedEventH\x00\x12&\n\x07matched\x18\x04 \x01(\x0b\x32\x13.poolrpc.MatchEventH\x00\x42\x07\n\x05\x65vent\"y\n\x0cUpdatedEvent\x12+\n\x0eprevious_state\x18\x01 \x01(\x0e\x32\x13.poolrpc.OrderState\x12&\n\tnew_state\x18\x02 \x01(\x0e\x32\x13.poolrpc.OrderState\x12\x14\n\x0cunits_filled\x18\x03 \x01(\r\"\x96\x01\n\nMatchEvent\x12(\n\x0bmatch_state\x18\x01 \x01(\x0e\x32\x13.poolrpc.MatchState\x12\x14\n\x0cunits_filled\x18\x02 \x01(\r\x12\x15\n\rmatched_order\x18\x03 \x01(\x0c\x12\x31\n\rreject_reason\x18\x04 \x01(\x0e\x32\x1a.poolrpc.MatchRejectReason\"\x87\x02\n\x16RecoverAccountsRequest\x12\x13\n\x0b\x66ull_client\x18\x01 \x01(\x08\x12\x16\n\x0e\x61\x63\x63ount_target\x18\x02 \x01(\r\x12\x16\n\x0e\x61uctioneer_key\x18\x03 \x01(\t\x12\x13\n\x0bheight_hint\x18\x04 \x01(\r\x12\x14\n\x0c\x62itcoin_host\x18\x05 \x01(\t\x12\x14\n\x0c\x62itcoin_user\x18\x06 \x01(\t\x12\x18\n\x10\x62itcoin_password\x18\x07 \x01(\t\x12\x1c\n\x14\x62itcoin_httppostmode\x18\x08 \x01(\x08\x12\x16\n\x0e\x62itcoin_usetls\x18\t \x01(\x08\x12\x17\n\x0f\x62itcoin_tlspath\x18\n \x01(\t\"9\n\x17RecoverAccountsResponse\x12\x1e\n\x16num_recovered_accounts\x18\x01 \x01(\r\"\x13\n\x11\x41uctionFeeRequest\"B\n\x12\x41uctionFeeResponse\x12,\n\rexecution_fee\x18\x01 \x01(\x0b\x32\x15.poolrpc.ExecutionFee\"\xcf\x03\n\x05Lease\x12(\n\rchannel_point\x18\x01 \x01(\x0b\x32\x11.poolrpc.OutPoint\x12\x17\n\x0f\x63hannel_amt_sat\x18\x02 \x01(\x04\x12\x1f\n\x17\x63hannel_duration_blocks\x18\x03 \x01(\r\x12\x1c\n\x14\x63hannel_lease_expiry\x18\x04 \x01(\r\x12\x13\n\x0bpremium_sat\x18\x05 \x01(\x04\x12\x19\n\x11\x65xecution_fee_sat\x18\x06 \x01(\x04\x12\x15\n\rchain_fee_sat\x18\x07 \x01(\x04\x12\x1b\n\x13\x63learing_rate_price\x18\x08 \x01(\x04\x12\x18\n\x10order_fixed_rate\x18\t \x01(\x04\x12\x13\n\x0border_nonce\x18\n \x01(\x0c\x12\x1b\n\x13matched_order_nonce\x18\x10 \x01(\x0c\x12\x11\n\tpurchased\x18\x0b \x01(\x08\x12\x1f\n\x17\x63hannel_remote_node_key\x18\x0c \x01(\x0c\x12,\n\x11\x63hannel_node_tier\x18\r \x01(\x0e\x32\x11.poolrpc.NodeTier\x12\x19\n\x11self_chan_balance\x18\x0e \x01(\x04\x12\x17\n\x0fsidecar_channel\x18\x0f \x01(\x08\"4\n\rLeasesRequest\x12\x11\n\tbatch_ids\x18\x01 \x03(\x0c\x12\x10\n\x08\x61\x63\x63ounts\x18\x02 \x03(\x0c\"j\n\x0eLeasesResponse\x12\x1e\n\x06leases\x18\x01 \x03(\x0b\x32\x0e.poolrpc.Lease\x12\x1c\n\x14total_amt_earned_sat\x18\x02 \x01(\x04\x12\x1a\n\x12total_amt_paid_sat\x18\x03 \x01(\x04\"\x0f\n\rTokensRequest\"4\n\x0eTokensResponse\x12\"\n\x06tokens\x18\x01 \x03(\x0b\x32\x12.poolrpc.LsatToken\"\xc8\x01\n\tLsatToken\x12\x15\n\rbase_macaroon\x18\x01 \x01(\x0c\x12\x14\n\x0cpayment_hash\x18\x02 \x01(\x0c\x12\x18\n\x10payment_preimage\x18\x03 \x01(\x0c\x12\x18\n\x10\x61mount_paid_msat\x18\x04 \x01(\x03\x12\x1d\n\x15routing_fee_paid_msat\x18\x05 \x01(\x03\x12\x14\n\x0ctime_created\x18\x06 \x01(\x03\x12\x0f\n\x07\x65xpired\x18\x07 \x01(\x08\x12\x14\n\x0cstorage_name\x18\x08 \x01(\t\"\x16\n\x14LeaseDurationRequest\"\xd4\x02\n\x15LeaseDurationResponse\x12O\n\x0flease_durations\x18\x01 \x03(\x0b\x32\x32.poolrpc.LeaseDurationResponse.LeaseDurationsEntryB\x02\x18\x01\x12X\n\x16lease_duration_buckets\x18\x02 \x03(\x0b\x32\x38.poolrpc.LeaseDurationResponse.LeaseDurationBucketsEntry\x1a\x35\n\x13LeaseDurationsEntry\x12\x0b\n\x03key\x18\x01 \x01(\r\x12\r\n\x05value\x18\x02 \x01(\x08:\x02\x38\x01\x1aY\n\x19LeaseDurationBucketsEntry\x12\x0b\n\x03key\x18\x01 \x01(\r\x12+\n\x05value\x18\x02 \x01(\x0e\x32\x1c.poolrpc.DurationBucketState:\x02\x38\x01\"\x16\n\x14NextBatchInfoRequest\"\x87\x01\n\x15NextBatchInfoResponse\x12\x13\n\x0b\x63onf_target\x18\x05 \x01(\r\x12\x1b\n\x13\x66\x65\x65_rate_sat_per_kw\x18\x06 \x01(\x04\x12\x17\n\x0f\x63lear_timestamp\x18\x07 \x01(\x04\x12#\n\x1b\x61uto_renew_extension_blocks\x18\x08 \x01(\r\")\n\x11NodeRatingRequest\x12\x14\n\x0cnode_pubkeys\x18\x01 \x03(\x0c\"?\n\x12NodeRatingResponse\x12)\n\x0cnode_ratings\x18\x01 \x03(\x0b\x32\x13.poolrpc.NodeRating\"\x10\n\x0eGetInfoRequest\"\x8d\x04\n\x0fGetInfoResponse\x12\x0f\n\x07version\x18\x01 \x01(\t\x12\x16\n\x0e\x61\x63\x63ounts_total\x18\x02 \x01(\r\x12\x17\n\x0f\x61\x63\x63ounts_active\x18\x03 \x01(\r\x12\x1f\n\x17\x61\x63\x63ounts_active_expired\x18\x04 \x01(\r\x12\x19\n\x11\x61\x63\x63ounts_archived\x18\x05 \x01(\r\x12\x14\n\x0corders_total\x18\x06 \x01(\r\x12\x15\n\rorders_active\x18\x07 \x01(\r\x12\x17\n\x0forders_archived\x18\x08 \x01(\r\x12\x1c\n\x14\x63urrent_block_height\x18\t \x01(\r\x12\x18\n\x10\x62\x61tches_involved\x18\n \x01(\r\x12(\n\x0bnode_rating\x18\x0b \x01(\x0b\x32\x13.poolrpc.NodeRating\x12\x13\n\x0blsat_tokens\x18\x0c \x01(\r\x12 \n\x18subscribed_to_auctioneer\x18\r \x01(\x08\x12\x16\n\x0enew_nodes_only\x18\x0e \x01(\x08\x12=\n\x0bmarket_info\x18\x0f \x03(\x0b\x32(.poolrpc.GetInfoResponse.MarketInfoEntry\x1a\x46\n\x0fMarketInfoEntry\x12\x0b\n\x03key\x18\x01 \x01(\r\x12\"\n\x05value\x18\x02 \x01(\x0b\x32\x13.poolrpc.MarketInfo:\x02\x38\x01\"\x13\n\x11StopDaemonRequest\"\x14\n\x12StopDaemonResponse\"H\n\x13OfferSidecarRequest\x12\x16\n\x0e\x61uto_negotiate\x18\x01 \x01(\x08\x12\x19\n\x03\x62id\x18\x02 \x01(\x0b\x32\x0c.poolrpc.Bid\"\x1f\n\rSidecarTicket\x12\x0e\n\x06ticket\x18\x01 \x01(\t\"\xbd\x03\n\x14\x44\x65\x63odedSidecarTicket\x12\n\n\x02id\x18\x01 \x01(\x0c\x12\x0f\n\x07version\x18\x02 \x01(\r\x12\r\n\x05state\x18\x03 \x01(\t\x12\x16\n\x0eoffer_capacity\x18\x04 \x01(\x04\x12\x19\n\x11offer_push_amount\x18\x05 \x01(\x04\x12#\n\x1boffer_lease_duration_blocks\x18\x06 \x01(\r\x12\x19\n\x11offer_sign_pubkey\x18\x07 \x01(\x0c\x12\x17\n\x0foffer_signature\x18\x08 \x01(\x0c\x12\x12\n\noffer_auto\x18\t \x01(\x08\x12\x1d\n\x15recipient_node_pubkey\x18\n \x01(\x0c\x12!\n\x19recipient_multisig_pubkey\x18\x0b \x01(\x0c\x12\'\n\x1frecipient_multisig_pubkey_index\x18\x0c \x01(\r\x12\x17\n\x0forder_bid_nonce\x18\r \x01(\x0c\x12\x17\n\x0forder_signature\x18\x0e \x01(\x0c\x12$\n\x1c\x65xecution_pending_channel_id\x18\x0f \x01(\x0c\x12\x16\n\x0e\x65ncoded_ticket\x18\x10 \x01(\t\"@\n\x16RegisterSidecarRequest\x12\x0e\n\x06ticket\x18\x01 \x01(\t\x12\x16\n\x0e\x61uto_negotiate\x18\x02 \x01(\x08\"-\n\x1b\x45xpectSidecarChannelRequest\x12\x0e\n\x06ticket\x18\x01 \x01(\t\"\x1e\n\x1c\x45xpectSidecarChannelResponse\")\n\x13ListSidecarsRequest\x12\x12\n\nsidecar_id\x18\x01 \x01(\x0c\"F\n\x14ListSidecarsResponse\x12.\n\x07tickets\x18\x01 \x03(\x0b\x32\x1d.poolrpc.DecodedSidecarTicket\"*\n\x14\x43\x61ncelSidecarRequest\x12\x12\n\nsidecar_id\x18\x01 \x01(\x0c\"\x17\n\x15\x43\x61ncelSidecarResponse*\x93\x01\n\x0c\x41\x63\x63ountState\x12\x10\n\x0cPENDING_OPEN\x10\x00\x12\x12\n\x0ePENDING_UPDATE\x10\x01\x12\x08\n\x04OPEN\x10\x02\x12\x0b\n\x07\x45XPIRED\x10\x03\x12\x12\n\x0ePENDING_CLOSED\x10\x04\x12\n\n\x06\x43LOSED\x10\x05\x12\x13\n\x0fRECOVERY_FAILED\x10\x06\x12\x11\n\rPENDING_BATCH\x10\x07*P\n\nMatchState\x12\x0b\n\x07PREPARE\x10\x00\x12\x0c\n\x08\x41\x43\x43\x45PTED\x10\x01\x12\x0c\n\x08REJECTED\x10\x02\x12\n\n\x06SIGNED\x10\x03\x12\r\n\tFINALIZED\x10\x04*\xbe\x01\n\x11MatchRejectReason\x12\x08\n\x04NONE\x10\x00\x12\x16\n\x12SERVER_MISBEHAVIOR\x10\x01\x12\x1a\n\x16\x42\x41TCH_VERSION_MISMATCH\x10\x02\x12\x1d\n\x19PARTIAL_REJECT_COLLATERAL\x10\x03\x12!\n\x1dPARTIAL_REJECT_DUPLICATE_PEER\x10\x04\x12)\n%PARTIAL_REJECT_CHANNEL_FUNDING_FAILED\x10\x05\x32\xa5\x11\n\x06Trader\x12<\n\x07GetInfo\x12\x17.poolrpc.GetInfoRequest\x1a\x18.poolrpc.GetInfoResponse\x12\x45\n\nStopDaemon\x12\x1a.poolrpc.StopDaemonRequest\x1a\x1b.poolrpc.StopDaemonResponse\x12K\n\x0cQuoteAccount\x12\x1c.poolrpc.QuoteAccountRequest\x1a\x1d.poolrpc.QuoteAccountResponse\x12<\n\x0bInitAccount\x12\x1b.poolrpc.InitAccountRequest\x1a\x10.poolrpc.Account\x12K\n\x0cListAccounts\x12\x1c.poolrpc.ListAccountsRequest\x1a\x1d.poolrpc.ListAccountsResponse\x12K\n\x0c\x43loseAccount\x12\x1c.poolrpc.CloseAccountRequest\x1a\x1d.poolrpc.CloseAccountResponse\x12T\n\x0fWithdrawAccount\x12\x1f.poolrpc.WithdrawAccountRequest\x1a .poolrpc.WithdrawAccountResponse\x12Q\n\x0e\x44\x65positAccount\x12\x1e.poolrpc.DepositAccountRequest\x1a\x1f.poolrpc.DepositAccountResponse\x12K\n\x0cRenewAccount\x12\x1c.poolrpc.RenewAccountRequest\x1a\x1d.poolrpc.RenewAccountResponse\x12Q\n\x0e\x42umpAccountFee\x12\x1e.poolrpc.BumpAccountFeeRequest\x1a\x1f.poolrpc.BumpAccountFeeResponse\x12T\n\x0fRecoverAccounts\x12\x1f.poolrpc.RecoverAccountsRequest\x1a .poolrpc.RecoverAccountsResponse\x12H\n\x0bSubmitOrder\x12\x1b.poolrpc.SubmitOrderRequest\x1a\x1c.poolrpc.SubmitOrderResponse\x12\x45\n\nListOrders\x12\x1a.poolrpc.ListOrdersRequest\x1a\x1b.poolrpc.ListOrdersResponse\x12H\n\x0b\x43\x61ncelOrder\x12\x1b.poolrpc.CancelOrderRequest\x1a\x1c.poolrpc.CancelOrderResponse\x12\x45\n\nQuoteOrder\x12\x1a.poolrpc.QuoteOrderRequest\x1a\x1b.poolrpc.QuoteOrderResponse\x12\x45\n\nAuctionFee\x12\x1a.poolrpc.AuctionFeeRequest\x1a\x1b.poolrpc.AuctionFeeResponse\x12O\n\x0eLeaseDurations\x12\x1d.poolrpc.LeaseDurationRequest\x1a\x1e.poolrpc.LeaseDurationResponse\x12N\n\rNextBatchInfo\x12\x1d.poolrpc.NextBatchInfoRequest\x1a\x1e.poolrpc.NextBatchInfoResponse\x12N\n\rBatchSnapshot\x12\x1d.poolrpc.BatchSnapshotRequest\x1a\x1e.poolrpc.BatchSnapshotResponse\x12@\n\rGetLsatTokens\x12\x16.poolrpc.TokensRequest\x1a\x17.poolrpc.TokensResponse\x12\x39\n\x06Leases\x12\x16.poolrpc.LeasesRequest\x1a\x17.poolrpc.LeasesResponse\x12\x46\n\x0bNodeRatings\x12\x1a.poolrpc.NodeRatingRequest\x1a\x1b.poolrpc.NodeRatingResponse\x12Q\n\x0e\x42\x61tchSnapshots\x12\x1e.poolrpc.BatchSnapshotsRequest\x1a\x1f.poolrpc.BatchSnapshotsResponse\x12\x44\n\x0cOfferSidecar\x12\x1c.poolrpc.OfferSidecarRequest\x1a\x16.poolrpc.SidecarTicket\x12J\n\x0fRegisterSidecar\x12\x1f.poolrpc.RegisterSidecarRequest\x1a\x16.poolrpc.SidecarTicket\x12\x63\n\x14\x45xpectSidecarChannel\x12$.poolrpc.ExpectSidecarChannelRequest\x1a%.poolrpc.ExpectSidecarChannelResponse\x12L\n\x13\x44\x65\x63odeSidecarTicket\x12\x16.poolrpc.SidecarTicket\x1a\x1d.poolrpc.DecodedSidecarTicket\x12K\n\x0cListSidecars\x12\x1c.poolrpc.ListSidecarsRequest\x1a\x1d.poolrpc.ListSidecarsResponse\x12N\n\rCancelSidecar\x12\x1d.poolrpc.CancelSidecarRequest\x1a\x1e.poolrpc.CancelSidecarResponseB\'Z%github.com/lightninglabs/pool/poolrpcb\x06proto3'
   ,
   dependencies=[poolgrpc_dot_compiled_dot_auctioneer__pb2.DESCRIPTOR,])
 
@@ -75,8 +75,8 @@ _ACCOUNTSTATE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=7027,
-  serialized_end=7174,
+  serialized_start=7267,
+  serialized_end=7414,
 )
 _sym_db.RegisterEnumDescriptor(_ACCOUNTSTATE)
 
@@ -116,8 +116,8 @@ _MATCHSTATE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=7176,
-  serialized_end=7256,
+  serialized_start=7416,
+  serialized_end=7496,
 )
 _sym_db.RegisterEnumDescriptor(_MATCHSTATE)
 
@@ -162,8 +162,8 @@ _MATCHREJECTREASON = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=7259,
-  serialized_end=7449,
+  serialized_start=7499,
+  serialized_end=7689,
 )
 _sym_db.RegisterEnumDescriptor(_MATCHREJECTREASON)
 
@@ -1813,6 +1813,76 @@ _RECOVERACCOUNTSREQUEST = _descriptor.Descriptor(
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
+    _descriptor.FieldDescriptor(
+      name='full_client', full_name='poolrpc.RecoverAccountsRequest.full_client', index=0,
+      number=1, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='account_target', full_name='poolrpc.RecoverAccountsRequest.account_target', index=1,
+      number=2, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='auctioneer_key', full_name='poolrpc.RecoverAccountsRequest.auctioneer_key', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='height_hint', full_name='poolrpc.RecoverAccountsRequest.height_hint', index=3,
+      number=4, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='bitcoin_host', full_name='poolrpc.RecoverAccountsRequest.bitcoin_host', index=4,
+      number=5, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='bitcoin_user', full_name='poolrpc.RecoverAccountsRequest.bitcoin_user', index=5,
+      number=6, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='bitcoin_password', full_name='poolrpc.RecoverAccountsRequest.bitcoin_password', index=6,
+      number=7, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='bitcoin_httppostmode', full_name='poolrpc.RecoverAccountsRequest.bitcoin_httppostmode', index=7,
+      number=8, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='bitcoin_usetls', full_name='poolrpc.RecoverAccountsRequest.bitcoin_usetls', index=8,
+      number=9, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='bitcoin_tlspath', full_name='poolrpc.RecoverAccountsRequest.bitcoin_tlspath', index=9,
+      number=10, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -1825,8 +1895,8 @@ _RECOVERACCOUNTSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3840,
-  serialized_end=3864,
+  serialized_start=3841,
+  serialized_end=4104,
 )
 
 
@@ -1857,8 +1927,8 @@ _RECOVERACCOUNTSRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3866,
-  serialized_end=3923,
+  serialized_start=4106,
+  serialized_end=4163,
 )
 
 
@@ -1882,8 +1952,8 @@ _AUCTIONFEEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3925,
-  serialized_end=3944,
+  serialized_start=4165,
+  serialized_end=4184,
 )
 
 
@@ -1914,8 +1984,8 @@ _AUCTIONFEERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3946,
-  serialized_end=4012,
+  serialized_start=4186,
+  serialized_end=4252,
 )
 
 
@@ -2051,8 +2121,8 @@ _LEASE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4015,
-  serialized_end=4478,
+  serialized_start=4255,
+  serialized_end=4718,
 )
 
 
@@ -2090,8 +2160,8 @@ _LEASESREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4480,
-  serialized_end=4532,
+  serialized_start=4720,
+  serialized_end=4772,
 )
 
 
@@ -2136,8 +2206,8 @@ _LEASESRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4534,
-  serialized_end=4640,
+  serialized_start=4774,
+  serialized_end=4880,
 )
 
 
@@ -2161,8 +2231,8 @@ _TOKENSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4642,
-  serialized_end=4657,
+  serialized_start=4882,
+  serialized_end=4897,
 )
 
 
@@ -2193,8 +2263,8 @@ _TOKENSRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4659,
-  serialized_end=4711,
+  serialized_start=4899,
+  serialized_end=4951,
 )
 
 
@@ -2274,8 +2344,8 @@ _LSATTOKEN = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4714,
-  serialized_end=4914,
+  serialized_start=4954,
+  serialized_end=5154,
 )
 
 
@@ -2299,8 +2369,8 @@ _LEASEDURATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4916,
-  serialized_end=4938,
+  serialized_start=5156,
+  serialized_end=5178,
 )
 
 
@@ -2338,8 +2408,8 @@ _LEASEDURATIONRESPONSE_LEASEDURATIONSENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5137,
-  serialized_end=5190,
+  serialized_start=5377,
+  serialized_end=5430,
 )
 
 _LEASEDURATIONRESPONSE_LEASEDURATIONBUCKETSENTRY = _descriptor.Descriptor(
@@ -2376,8 +2446,8 @@ _LEASEDURATIONRESPONSE_LEASEDURATIONBUCKETSENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5192,
-  serialized_end=5281,
+  serialized_start=5432,
+  serialized_end=5521,
 )
 
 _LEASEDURATIONRESPONSE = _descriptor.Descriptor(
@@ -2414,8 +2484,8 @@ _LEASEDURATIONRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4941,
-  serialized_end=5281,
+  serialized_start=5181,
+  serialized_end=5521,
 )
 
 
@@ -2439,8 +2509,8 @@ _NEXTBATCHINFOREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5283,
-  serialized_end=5305,
+  serialized_start=5523,
+  serialized_end=5545,
 )
 
 
@@ -2492,8 +2562,8 @@ _NEXTBATCHINFORESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5308,
-  serialized_end=5443,
+  serialized_start=5548,
+  serialized_end=5683,
 )
 
 
@@ -2524,8 +2594,8 @@ _NODERATINGREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5445,
-  serialized_end=5486,
+  serialized_start=5685,
+  serialized_end=5726,
 )
 
 
@@ -2556,8 +2626,8 @@ _NODERATINGRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5488,
-  serialized_end=5551,
+  serialized_start=5728,
+  serialized_end=5791,
 )
 
 
@@ -2581,8 +2651,8 @@ _GETINFOREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5553,
-  serialized_end=5569,
+  serialized_start=5793,
+  serialized_end=5809,
 )
 
 
@@ -2620,8 +2690,8 @@ _GETINFORESPONSE_MARKETINFOENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6027,
-  serialized_end=6097,
+  serialized_start=6267,
+  serialized_end=6337,
 )
 
 _GETINFORESPONSE = _descriptor.Descriptor(
@@ -2749,8 +2819,8 @@ _GETINFORESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5572,
-  serialized_end=6097,
+  serialized_start=5812,
+  serialized_end=6337,
 )
 
 
@@ -2774,8 +2844,8 @@ _STOPDAEMONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6099,
-  serialized_end=6118,
+  serialized_start=6339,
+  serialized_end=6358,
 )
 
 
@@ -2799,8 +2869,8 @@ _STOPDAEMONRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6120,
-  serialized_end=6140,
+  serialized_start=6360,
+  serialized_end=6380,
 )
 
 
@@ -2838,8 +2908,8 @@ _OFFERSIDECARREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6142,
-  serialized_end=6214,
+  serialized_start=6382,
+  serialized_end=6454,
 )
 
 
@@ -2870,8 +2940,8 @@ _SIDECARTICKET = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6216,
-  serialized_end=6247,
+  serialized_start=6456,
+  serialized_end=6487,
 )
 
 
@@ -3007,8 +3077,8 @@ _DECODEDSIDECARTICKET = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6250,
-  serialized_end=6695,
+  serialized_start=6490,
+  serialized_end=6935,
 )
 
 
@@ -3046,8 +3116,8 @@ _REGISTERSIDECARREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6697,
-  serialized_end=6761,
+  serialized_start=6937,
+  serialized_end=7001,
 )
 
 
@@ -3078,8 +3148,8 @@ _EXPECTSIDECARCHANNELREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6763,
-  serialized_end=6808,
+  serialized_start=7003,
+  serialized_end=7048,
 )
 
 
@@ -3103,8 +3173,8 @@ _EXPECTSIDECARCHANNELRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6810,
-  serialized_end=6840,
+  serialized_start=7050,
+  serialized_end=7080,
 )
 
 
@@ -3135,8 +3205,8 @@ _LISTSIDECARSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6842,
-  serialized_end=6883,
+  serialized_start=7082,
+  serialized_end=7123,
 )
 
 
@@ -3167,8 +3237,8 @@ _LISTSIDECARSRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6885,
-  serialized_end=6955,
+  serialized_start=7125,
+  serialized_end=7195,
 )
 
 
@@ -3199,8 +3269,8 @@ _CANCELSIDECARREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6957,
-  serialized_end=6999,
+  serialized_start=7197,
+  serialized_end=7239,
 )
 
 
@@ -3224,8 +3294,8 @@ _CANCELSIDECARRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=7001,
-  serialized_end=7024,
+  serialized_start=7241,
+  serialized_end=7264,
 )
 
 _INITACCOUNTREQUEST.oneofs_by_name['account_expiry'].fields.append(
@@ -3882,8 +3952,8 @@ _TRADER = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=7452,
-  serialized_end=9665,
+  serialized_start=7692,
+  serialized_end=9905,
   methods=[
   _descriptor.MethodDescriptor(
     name='GetInfo',

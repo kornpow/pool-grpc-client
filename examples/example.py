@@ -33,6 +33,9 @@ pool = PoolClient(
 	# no_tls=True
 )
 
+import code
+code.interact(local=dict(globals(), **locals())) 
+
 # pool = PoolClient(
 # 	pool_ip_port,
 # 	macaroon_filepath=mac,
